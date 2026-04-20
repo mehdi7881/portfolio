@@ -1,0 +1,349 @@
+import { Section, TechBadge } from "./ui.jsx";
+import { PROFILE, PROJETS, VEILLE } from "../data.js";
+
+// ─── HERO ────────────────────────────────────────────────────────────────────
+export function Hero({ onNavigate }) {
+  return (
+    <section id="accueil" className="min-h-screen flex flex-col justify-center bg-slate-950 relative overflow-hidden">
+      {/* Grille de fond */}
+      <div className="absolute inset-0 pointer-events-none opacity-20"
+        style={{ backgroundImage: "linear-gradient(rgba(14,165,233,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+
+      {/* Glows */}
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-sky-600/8 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 py-32 relative z-10">
+        <div className="inline-flex items-center gap-2 bg-sky-500/10 border border-sky-500/25 text-sky-400 text-xs font-mono px-4 py-2 rounded-full mb-8 tracking-widest uppercase">
+          <span className="w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse" />
+          Portfolio BTS SIO SISR — E5
+        </div>
+
+        <h1 className="text-5xl md:text-7xl font-black text-white mb-5 leading-[1.05] tracking-tight">
+          Bienvenue sur<br />
+          <span className="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">mon portfolio</span>
+        </h1>
+
+        <p className="text-sky-300 font-bold text-xl mb-4">{PROFILE.nom}</p>
+        <p className="text-slate-400 text-lg max-w-2xl mb-10 leading-relaxed">{PROFILE.tagline}</p>
+
+        <div className="flex flex-wrap gap-4 mb-20">
+          <a href="#realisations" className="bg-sky-500 hover:bg-sky-400 text-white font-bold px-7 py-3.5 rounded-xl transition-all shadow-lg shadow-sky-500/20 hover:shadow-sky-500/30 hover:-translate-y-0.5">
+            Voir mes réalisations
+          </a>
+          <a href={PROFILE.cv} target="_blank" rel="noreferrer"
+            className="border border-slate-700 hover:border-sky-500/60 text-slate-300 hover:text-white font-bold px-7 py-3.5 rounded-xl transition-all hover:-translate-y-0.5">
+            Télécharger mon CV
+          </a>
+        </div>
+
+        {/* Stats cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { label: "Formation", value: "BTS SIO SISR", icon: "🎓" },
+            { label: "École", value: "H3 Campus", icon: "🏫" },
+            { label: "Stage", value: "Mairie Coignières", icon: "🏛️" },
+            { label: "Alternance", value: "ATERMES", icon: "💼" },
+          ].map((c) => (
+            <div key={c.label} className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 backdrop-blur hover:border-slate-700 transition-colors">
+              <p className="text-2xl mb-2">{c.icon}</p>
+              <p className="text-slate-500 text-xs uppercase tracking-wider mb-1">{c.label}</p>
+              <p className="text-white font-bold text-sm">{c.value}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Liens rapides */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+          {[
+            { label: "À propos", desc: "Profil, parcours et expériences", href: "#apropos", icon: "👤" },
+            { label: "Compétences", desc: "Systèmes, réseaux, sécurité", href: "#competences", icon: "⚡" },
+            { label: "Veille tech.", desc: "RaaS, 2FA et cybersécurité", href: "#veille", icon: "🔍" },
+          ].map((c) => (
+            <a key={c.label} href={c.href}
+              className="flex items-center gap-3 bg-slate-900/50 border border-slate-800 hover:border-sky-500/40 rounded-xl p-4 group transition-all">
+              <span className="text-xl">{c.icon}</span>
+              <div>
+                <p className="text-white font-semibold text-sm group-hover:text-sky-400 transition-colors">{c.label}</p>
+                <p className="text-slate-500 text-xs">{c.desc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── À PROPOS ────────────────────────────────────────────────────────────────
+export function APropos() {
+  return (
+    <Section id="apropos" title="À propos" subtitle="Mon profil, mon parcours et mes expériences" dark>
+      <div className="grid lg:grid-cols-2 gap-12 items-start">
+        {/* Colonne gauche */}
+        <div>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-sky-500/20">
+              M
+            </div>
+            <div>
+              <h3 className="text-2xl font-black text-white">{PROFILE.nom}</h3>
+              <p className="text-sky-400 font-medium">{PROFILE.formation}</p>
+            </div>
+          </div>
+
+          <p className="text-slate-300 leading-relaxed mb-6">{PROFILE.apropos.presentation}</p>
+
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 mb-5">
+            <p className="text-sky-400 font-bold mb-2 flex items-center gap-2"><span>🎯</span> Mon objectif</p>
+            <p className="text-slate-300 text-sm leading-relaxed">{PROFILE.objectif}</p>
+          </div>
+
+          {/* Langues */}
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5">
+            <p className="text-sky-400 font-bold mb-3 flex items-center gap-2"><span>🌍</span> Langues</p>
+            <div className="flex gap-4">
+              {PROFILE.langues.map((l) => (
+                <div key={l.langue}>
+                  <p className="text-white font-semibold text-sm">{l.langue}</p>
+                  <div className="flex gap-0.5 mt-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className={`w-4 h-1.5 rounded-full ${i < l.stars ? "bg-sky-400" : "bg-slate-700"}`} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Colonne droite – Parcours + Expériences */}
+        <div className="space-y-4">
+          {/* Parcours scolaire */}
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6">
+            <p className="text-sky-400 font-bold mb-4 flex items-center gap-2"><span>🎓</span> Parcours scolaire</p>
+            <div className="relative pl-4 border-l border-slate-700 space-y-4">
+              {PROFILE.apropos.parcours.map((p, i) => (
+                <div key={i} className="relative">
+                  <div className="absolute -left-[21px] w-3 h-3 rounded-full bg-sky-500 border-2 border-slate-900" />
+                  <p className="text-white font-semibold">{p.titre}</p>
+                  <p className="text-sky-400 text-sm">{p.ecole}</p>
+                  <p className="text-slate-500 text-xs">{p.periode}{p.mention ? ` · ${p.mention}` : ""}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Expériences */}
+          {PROFILE.apropos.experiences.map((exp, i) => (
+            <div key={i} className="bg-slate-800/50 border border-sky-500/20 rounded-2xl p-5">
+              <p className="text-sky-400 font-bold mb-1">🏢 {exp.titre}</p>
+              <p className="text-slate-500 text-xs mb-3">{exp.periode}</p>
+              <ul className="space-y-1">
+                {exp.missions.slice(0, 3).map((m, j) => (
+                  <li key={j} className="flex items-start gap-2 text-slate-300 text-sm">
+                    <span className="text-sky-400 mt-1 flex-shrink-0">·</span>{m}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+// ─── COMPÉTENCES ─────────────────────────────────────────────────────────────
+export function Competences() {
+  return (
+    <Section id="competences" title="Compétences" subtitle="Systèmes, réseaux, sécurité, supervision et support">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {PROFILE.competences.map((cat) => (
+          <div key={cat.categorie}
+            className="bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-sky-500/40 transition-all hover:-translate-y-0.5 group">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-sky-500/15 flex items-center justify-center text-xl group-hover:bg-sky-500/25 transition-colors">
+                {cat.icon}
+              </div>
+              <h3 className="text-white font-black text-sm uppercase tracking-wider">{cat.categorie}</h3>
+            </div>
+            <ul className="space-y-2">
+              {cat.items.map((item) => (
+                <li key={item} className="flex items-center gap-2.5 text-slate-300 text-sm">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sky-500 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+// ─── RÉALISATIONS ────────────────────────────────────────────────────────────
+export function Realisations({ onNavigate }) {
+  const catColors = {
+    Infrastructure: "text-blue-400 bg-blue-500/10 border-blue-500/25",
+    Réseau: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25",
+    Sécurité: "text-red-400 bg-red-500/10 border-red-500/25",
+    Veille: "text-purple-400 bg-purple-500/10 border-purple-500/25",
+    "Gestion de parc": "text-amber-400 bg-amber-500/10 border-amber-500/25",
+    Développement: "text-violet-400 bg-violet-500/10 border-violet-500/25",
+  };
+
+  return (
+    <Section id="realisations" title="Réalisations" subtitle="Mes projets professionnels et personnels" dark>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {PROJETS.map((p) => (
+          <button
+            key={p.id}
+            onClick={() => onNavigate("projet", p.id)}
+            className="text-left bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/50 transition-all hover:-translate-y-1 group flex flex-col"
+          >
+            {/* Image preview si dispo */}
+            {p.images && p.images.length > 0 ? (
+              <div className="h-36 overflow-hidden bg-slate-800 relative">
+                <img src={p.images[0].src} alt={p.titre} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70" />
+                <div className={`absolute inset-0 bg-gradient-to-br ${p.couleur} opacity-30`} />
+              </div>
+            ) : (
+              <div className={`h-24 bg-gradient-to-br ${p.couleur} flex items-center justify-center text-4xl opacity-80`}>
+                {p.icon}
+              </div>
+            )}
+
+            <div className="p-5 flex-1 flex flex-col">
+              <div className="flex items-start gap-2 mb-3">
+                <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${catColors[p.categorie] || "text-sky-400 bg-sky-500/10 border-sky-500/25"}`}>
+                  {p.categorie}
+                </span>
+              </div>
+              <h3 className="text-white font-black text-base mb-2 group-hover:text-sky-400 transition-colors leading-snug">{p.titre}</h3>
+              <p className="text-slate-500 text-sm leading-relaxed flex-1">{p.courte}</p>
+
+              <div className="flex flex-wrap gap-1.5 mt-4">
+                {p.technologies.slice(0, 3).map((t) => (
+                  <TechBadge key={t} label={t} small />
+                ))}
+                {p.technologies.length > 3 && (
+                  <span className="text-slate-600 text-xs px-2 py-0.5">+{p.technologies.length - 3}</span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-1 mt-4 text-sky-400 text-sm font-semibold">
+                Voir le projet <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+// ─── VEILLE ──────────────────────────────────────────────────────────────────
+export function Veille({ onNavigate }) {
+  return (
+    <Section id="veille" title="Veille technologique" subtitle="Suivi des actualités en cybersécurité et systèmes">
+      <div className="grid md:grid-cols-2 gap-6">
+        {VEILLE.map((v) => (
+          <div key={v.titre}
+            className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/40 transition-all group">
+            {v.image && (
+              <div className="h-40 overflow-hidden relative">
+                <img src={v.image} alt={v.titre} className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity group-hover:scale-105 duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
+              </div>
+            )}
+            <div className="p-6">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-xs font-mono text-slate-500">{v.date}</span>
+                <span className="text-slate-700">·</span>
+                <span className="text-xs text-slate-500">{v.source}</span>
+              </div>
+              <h3 className="text-white font-black text-lg mb-3 group-hover:text-sky-400 transition-colors">{v.titre}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed">{v.resume}</p>
+              {v.projetId && (
+                <button
+                  onClick={() => onNavigate("projet", v.projetId)}
+                  className="mt-4 text-sky-400 hover:text-sky-300 text-sm font-semibold flex items-center gap-1 transition-colors"
+                >
+                  Voir le projet associé <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+// ─── CONTACT ─────────────────────────────────────────────────────────────────
+export function Contact() {
+  const { contact } = PROFILE;
+  return (
+    <Section id="contact" title="Contact" subtitle="Disponible pour un stage ou une alternance" dark>
+      <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div>
+          <p className="text-slate-300 leading-relaxed mb-6">
+            Je suis actuellement en BTS SIO SISR et disponible pour des opportunités professionnelles. N'hésitez pas à me contacter pour discuter de mes projets ou d'une collaboration.
+          </p>
+          <div className="space-y-3">
+            {[
+              { icon: "✉️", label: "Email", value: contact.email, href: `mailto:${contact.email}` },
+              { icon: "📱", label: "Téléphone", value: PROFILE.phone, href: `tel:${PROFILE.phone}` },
+              { icon: "📍", label: "Localisation", value: contact.localisation, href: null },
+            ].map((c) => (
+              <div key={c.label} className="flex items-center gap-4 bg-slate-800/50 border border-slate-700/60 rounded-2xl px-5 py-4">
+                <span className="text-2xl">{c.icon}</span>
+                <div>
+                  <p className="text-slate-500 text-xs uppercase tracking-wider">{c.label}</p>
+                  {c.href
+                    ? <a href={c.href} className="text-white hover:text-sky-400 font-semibold transition-colors">{c.value}</a>
+                    : <p className="text-white font-semibold">{c.value}</p>
+                  }
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <a href={contact.linkedin} target="_blank" rel="noreferrer"
+            className="flex items-center gap-4 bg-slate-800/50 border border-slate-700/60 hover:border-blue-500/50 rounded-2xl px-5 py-4 group transition-all">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-sm">in</div>
+            <div className="flex-1">
+              <p className="text-slate-500 text-xs uppercase tracking-wider">LinkedIn</p>
+              <p className="text-white font-semibold group-hover:text-blue-400 transition-colors">mehdi-ahmiddouch</p>
+            </div>
+            <span className="text-slate-500 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+
+          <a href={contact.github} target="_blank" rel="noreferrer"
+            className="flex items-center gap-4 bg-slate-800/50 border border-slate-700/60 hover:border-slate-500 rounded-2xl px-5 py-4 group transition-all">
+            <div className="w-10 h-10 rounded-xl bg-slate-700 flex items-center justify-center text-white text-lg">🐱</div>
+            <div className="flex-1">
+              <p className="text-slate-500 text-xs uppercase tracking-wider">GitHub</p>
+              <p className="text-white font-semibold group-hover:text-slate-300 transition-colors">mehdi7881</p>
+            </div>
+            <span className="text-slate-500 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+
+          <a href={PROFILE.cv} target="_blank" rel="noreferrer"
+            className="flex items-center gap-4 bg-sky-500/10 border border-sky-500/30 hover:border-sky-500/60 rounded-2xl px-5 py-4 group transition-all">
+            <div className="w-10 h-10 rounded-xl bg-sky-500 flex items-center justify-center text-white text-lg">📄</div>
+            <div className="flex-1">
+              <p className="text-slate-500 text-xs uppercase tracking-wider">Curriculum Vitae</p>
+              <p className="text-sky-400 font-semibold group-hover:text-sky-300 transition-colors">Télécharger mon CV</p>
+            </div>
+            <span className="text-sky-400 group-hover:translate-x-1 transition-transform">↓</span>
+          </a>
+        </div>
+      </div>
+    </Section>
+  );
+}
