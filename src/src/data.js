@@ -23,7 +23,7 @@ export const PROFILE = {
   ecoles: [
     {
       nom: "H3 Campus — IPSSI SQY",
-      logo: "/assets/logo-h3campus.webp",
+      logo: null,
       periode: "Septembre 2025 – Juin 2026",
       diplome: "BTS SIO option SISR — 2ème année",
       lieu: "Saint-Quentin-en-Yvelines",
@@ -34,7 +34,7 @@ export const PROFILE = {
     },
     {
       nom: "IPSSI SQY",
-      logo: "/assets/logo-h3campus.webp",
+      logo: null,
       periode: "Septembre 2024 – Juin 2025",
       diplome: "BTS SIO option SISR — 1ère année",
       lieu: "Saint-Quentin-en-Yvelines",
@@ -45,7 +45,7 @@ export const PROFILE = {
     },
     {
       nom: "IUT de Vélizy-Rambouillet — UVSQ",
-      logo: "/assets/logo-uvsq.jpg",
+      logo: null,
       periode: "Septembre 2026 – Juin 2027 (visée)",
       diplome: "Licence Pro MRIT parcours ASUR — Cybersécurité",
       lieu: "Vélizy-Villacoublay (78)",
@@ -65,7 +65,6 @@ export const PROFILE = {
   entreprises: [
     {
       nom: "ATERMES",
-      logo: "/assets/logo-atermes.png",
       type: "Alternance",
       periode: "Septembre 2025 – Juin 2026",
       lieu: "Yvelines",
@@ -83,7 +82,6 @@ export const PROFILE = {
     },
     {
       nom: "Mairie de Coignières",
-      logo: "/assets/logo-coignieres.jpg",
       type: "Stage",
       periode: "28 avril – 25 juin 2025 (8 semaines)",
       lieu: "Coignières, Yvelines (78)",
@@ -188,7 +186,8 @@ export const PROJETS = [
       "Rédaction de la documentation technique",
     ],
     images: [
-      { src: "/assets/inframairie.png", legende: "Schéma d'infrastructure réseau de la Mairie de Coignières — VLANs, switches, pare-feu, vidéosurveillance" },
+      { src: "/assets/assiz.png", legende: "Schéma réseau avec segmentation VLANs et points d'accès" },
+      { src: "/assets/dylan.png", legende: "Topologie réseau – commutation et interconnexion" },
     ],
     documents: [],
     couleur: "from-emerald-600 to-teal-500",
@@ -245,36 +244,7 @@ export const PROJETS = [
 
   // ── SCOLAIRES / PERSONNELS ──
   {
-    id: "ap2-m2l",
-    titre: "AP2 — Projets DYLAN & ASSIZ (Maison des Ligues)",
-    courte: "Insertion dynamique VLAN et infrastructure Wi-Fi temporaire pour la M2L",
-    description: "Atelier de Professionnalisation N°2 réalisé en groupe (Ali H., Sasha H., Mehdi A.) dans le contexte de la Maison des Ligues (M2L). Deux missions : le projet DYLAN (insertion dynamique des PC portables dans le bon VLAN via MAC-based VLAN) et le projet ASSIZ (infrastructure Wi-Fi temporaire sécurisée pour les VIèmes assises nationales de l'Escrime).",
-    contexte: "La Maison des Ligues héberge plusieurs organisations sportives partageant un réseau commun. Besoin d'améliorer la gestion et la sécurité des connexions réseau.",
-    objectif: "Mission 1 : permettre l'insertion dynamique des PC portables dans le bon VLAN. Mission 2 : déployer une infrastructure Wi-Fi temporaire sécurisée avec accès séparés invités/staff.",
-    resultat: "Solution MAC-based VLAN retenue pour DYLAN (flexible, idéale pour utilisateurs mobiles). Infrastructure Wi-Fi à 3 points d'accès segmentés retenue pour ASSIZ.",
-    technologies: ["Cisco Packet Tracer", "MAC-based VLAN", "802.1Q", "Wi-Fi", "WPA2-PSK", "SSID", "Switch Cisco"],
-    categorie: "Réseau",
-    type: "scolaire",
-    missions: [
-      "Analyse du contexte de la Maison des Ligues",
-      "Étude et comparaison de 3 solutions VLAN (Port-based, Protocol-based, MAC-based)",
-      "Choix et justification de la solution MAC-based VLAN pour DYLAN",
-      "Conception de l'infrastructure Wi-Fi temporaire pour ASSIZ",
-      "Étude de 2 solutions Wi-Fi (SSID multiples vs Contrôleur + VLANs)",
-      "Maquettage sur Cisco Packet Tracer",
-      "Rédaction du dossier AP2 et présentation PowerPoint",
-    ],
-    images: [
-      { src: "/assets/dylan.png", legende: "Projet DYLAN — Topologie réseau MAC-based VLAN sur Cisco Packet Tracer" },
-      { src: "/assets/assiz.png", legende: "Projet ASSIZ — Infrastructure Wi-Fi temporaire avec segmentation VLANs" },
-    ],
-    documents: [
-      { nom: "Dossier AP2 — Rapport complet", fichier: "/assets/AP2_M2L.docx", description: "Rapport Word complet : contexte, solutions, comparaison, annexes" },
-      { nom: "Présentation AP2 — PowerPoint", fichier: "/assets/AP2_presentation.pptx", description: "Support de présentation du projet devant le jury" },
-    ],
-    couleur: "from-blue-600 to-indigo-500",
-    icon: "🏢",
-  },
+    id: "projet-dylan",
     titre: "Projet DYLAN — Insertion dynamique VLAN",
     courte: "Insertion dynamique des PC portables dans leur VLAN à la Maison des Ligues",
     description: "Ce projet vise à permettre l'insertion dynamique des PC portables dans le VLAN correspondant à leur structure lorsqu'ils sont connectés à une prise Ethernet commune dans les salles de réunion de la Maison des Ligues (M2L). Réalisé dans le cadre des projets AP1 à l'IPSSI.",

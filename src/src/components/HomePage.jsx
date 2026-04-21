@@ -180,16 +180,9 @@ export function APropos() {
               )}
 
               <div className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1 pr-3">
-                    <h3 className="text-white font-black text-base leading-snug mb-1">{e.nom}</h3>
-                    <p className={`text-sm font-medium ${e.futur ? "text-amber-400" : "text-sky-400"}`}>{e.diplome}</p>
-                  </div>
-                  {e.logo && (
-                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 border border-slate-700 p-1">
-                      <img src={e.logo} alt={e.nom} className="w-full h-full object-contain" />
-                    </div>
-                  )}
+                <div className="mb-4 pr-24">
+                  <h3 className="text-white font-black text-base leading-snug mb-1">{e.nom}</h3>
+                  <p className={`text-sm font-medium ${e.futur ? "text-amber-400" : "text-sky-400"}`}>{e.diplome}</p>
                 </div>
                 <p className="text-slate-400 text-xs mb-1 flex items-center gap-1">📍 {e.lieu}</p>
                 <p className="text-slate-400 text-xs mb-4">📅 {e.periode}</p>
@@ -236,17 +229,12 @@ export function APropos() {
               <div className={`h-3 bg-gradient-to-r ${e.couleur}`} />
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1 pr-3">
+                  <div>
                     <h3 className="text-white font-black text-lg">{e.nom}</h3>
                     <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${e.type === "Alternance" ? "text-sky-400 bg-sky-500/10 border-sky-500/25" : "text-emerald-400 bg-emerald-500/10 border-emerald-500/25"}`}>
                       {e.type}
                     </span>
                   </div>
-                  {e.logo && (
-                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 border border-slate-700 p-1">
-                      <img src={e.logo} alt={e.nom} className="w-full h-full object-contain" />
-                    </div>
-                  )}
                 </div>
                 <p className="text-slate-400 text-xs mb-1">📍 {e.lieu}</p>
                 <p className="text-slate-400 text-xs mb-1">📅 {e.periode}</p>
@@ -336,7 +324,6 @@ const PROJETS_ENTREPRISE = [
   "virtualisation",
 ];
 const PROJETS_PERSO = [
-  "ap2-m2l",
   "cybersecurite-linux",
   "veille-ransomware",
   "site-web",

@@ -78,197 +78,79 @@ export function Hero({ onNavigate }) {
 // ─── À PROPOS ────────────────────────────────────────────────────────────────
 export function APropos() {
   return (
-    <>
-      {/* ── PRÉSENTATION PERSONNELLE ── */}
-      <Section id="apropos" title="À propos" subtitle="Mon profil, mon parcours et mes expériences" dark>
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Gauche — identité */}
-          <div>
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-sky-500/20">
-                M
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-white">{PROFILE.nom}</h3>
-                <p className="text-sky-400 font-medium">{PROFILE.formation} · {PROFILE.age} ans</p>
-              </div>
+    <Section id="apropos" title="À propos" subtitle="Mon profil, mon parcours et mes expériences" dark>
+      <div className="grid lg:grid-cols-2 gap-12 items-start">
+        {/* Colonne gauche */}
+        <div>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-sky-500/20">
+              M
             </div>
-            <p className="text-slate-300 leading-relaxed mb-6">{PROFILE.presentation.texte}</p>
-            <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 mb-5">
-              <p className="text-sky-400 font-bold mb-3 flex items-center gap-2"><span>✨</span> Points clés</p>
-              <ul className="space-y-2">
-                {PROFILE.presentation.points.map((p, i) => (
-                  <li key={i} className="flex items-start gap-2 text-slate-300 text-sm">
-                    <span className="text-sky-400 mt-0.5 flex-shrink-0">→</span>{p}
+            <div>
+              <h3 className="text-2xl font-black text-white">{PROFILE.nom}</h3>
+              <p className="text-sky-400 font-medium">{PROFILE.formation}</p>
+            </div>
+          </div>
+
+          <p className="text-slate-300 leading-relaxed mb-6">{PROFILE.apropos.presentation}</p>
+
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 mb-5">
+            <p className="text-sky-400 font-bold mb-2 flex items-center gap-2"><span>🎯</span> Mon objectif</p>
+            <p className="text-slate-300 text-sm leading-relaxed">{PROFILE.objectif}</p>
+          </div>
+
+          {/* Langues */}
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5">
+            <p className="text-sky-400 font-bold mb-3 flex items-center gap-2"><span>🌍</span> Langues</p>
+            <div className="flex gap-4">
+              {PROFILE.langues.map((l) => (
+                <div key={l.langue}>
+                  <p className="text-white font-semibold text-sm">{l.langue}</p>
+                  <div className="flex gap-0.5 mt-1">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className={`w-4 h-1.5 rounded-full ${i < l.stars ? "bg-sky-400" : "bg-slate-700"}`} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Colonne droite – Parcours + Expériences */}
+        <div className="space-y-4">
+          {/* Parcours scolaire */}
+          <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6">
+            <p className="text-sky-400 font-bold mb-4 flex items-center gap-2"><span>🎓</span> Parcours scolaire</p>
+            <div className="relative pl-4 border-l border-slate-700 space-y-4">
+              {PROFILE.apropos.parcours.map((p, i) => (
+                <div key={i} className="relative">
+                  <div className="absolute -left-[21px] w-3 h-3 rounded-full bg-sky-500 border-2 border-slate-900" />
+                  <p className="text-white font-semibold">{p.titre}</p>
+                  <p className="text-sky-400 text-sm">{p.ecole}</p>
+                  <p className="text-slate-500 text-xs">{p.periode}{p.mention ? ` · ${p.mention}` : ""}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Expériences */}
+          {PROFILE.apropos.experiences.map((exp, i) => (
+            <div key={i} className="bg-slate-800/50 border border-sky-500/20 rounded-2xl p-5">
+              <p className="text-sky-400 font-bold mb-1">🏢 {exp.titre}</p>
+              <p className="text-slate-500 text-xs mb-3">{exp.periode}</p>
+              <ul className="space-y-1">
+                {exp.missions.slice(0, 3).map((m, j) => (
+                  <li key={j} className="flex items-start gap-2 text-slate-300 text-sm">
+                    <span className="text-sky-400 mt-1 flex-shrink-0">·</span>{m}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5 mb-5">
-              <p className="text-sky-400 font-bold mb-2 flex items-center gap-2"><span>🎯</span> Mon objectif</p>
-              <p className="text-slate-300 text-sm leading-relaxed">{PROFILE.objectif}</p>
-            </div>
-            <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5">
-              <p className="text-sky-400 font-bold mb-3 flex items-center gap-2"><span>🌍</span> Langues</p>
-              <div className="flex gap-6">
-                {PROFILE.langues.map((l) => (
-                  <div key={l.langue}>
-                    <p className="text-white font-semibold text-sm">{l.langue}</p>
-                    <p className="text-slate-500 text-xs mb-1">{l.niveau}</p>
-                    <div className="flex gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <div key={i} className={`w-4 h-1.5 rounded-full ${i < l.stars ? "bg-sky-400" : "bg-slate-700"}`} />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Droite — parcours */}
-          <div className="space-y-4">
-            <div className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6">
-              <p className="text-sky-400 font-bold mb-4 flex items-center gap-2"><span>🎓</span> Parcours scolaire</p>
-              <div className="relative pl-4 border-l border-slate-700 space-y-4">
-                {PROFILE.apropos.parcours.map((p, i) => (
-                  <div key={i} className="relative">
-                    <div className="absolute -left-[21px] w-3 h-3 rounded-full bg-sky-500 border-2 border-slate-900" />
-                    <p className="text-white font-semibold text-sm">{p.titre}</p>
-                    <p className="text-sky-400 text-xs">{p.ecole}</p>
-                    <p className="text-slate-500 text-xs">{p.periode}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {PROFILE.entreprises.map((e, i) => (
-              <div key={i} className="bg-slate-800/50 border border-sky-500/20 rounded-2xl p-5">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">{e.type}</span>
-                  <p className="text-white font-bold text-sm">{e.nom}</p>
-                </div>
-                <p className="text-slate-500 text-xs mb-3">{e.periode} · {e.lieu}</p>
-                <ul className="space-y-1">
-                  {e.missions.slice(0, 3).map((m, j) => (
-                    <li key={j} className="flex items-start gap-2 text-slate-300 text-xs">
-                      <span className="text-sky-400 mt-0.5 flex-shrink-0">·</span>{m}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ── MES ÉCOLES ── */}
-      <Section id="ecoles" title="Mes écoles" subtitle="Mon parcours de formation et mon projet d'études">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROFILE.ecoles.map((e, i) => (
-            <div key={i} className={`relative bg-slate-900 border rounded-2xl overflow-hidden hover:border-opacity-60 transition-all ${e.futur ? "border-amber-500/40 hover:border-amber-500/70" : "border-slate-800 hover:border-sky-500/40"}`}>
-              {/* Barre couleur en haut */}
-              <div className={`h-3 bg-gradient-to-r ${e.couleur}`} />
-
-              {/* Badge futur */}
-              {e.futur && (
-                <div className="absolute top-5 right-4">
-                  <span className="flex items-center gap-1.5 bg-amber-500/15 text-amber-400 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
-                    Future école
-                  </span>
-                </div>
-              )}
-
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex-1 pr-3">
-                    <h3 className="text-white font-black text-base leading-snug mb-1">{e.nom}</h3>
-                    <p className={`text-sm font-medium ${e.futur ? "text-amber-400" : "text-sky-400"}`}>{e.diplome}</p>
-                  </div>
-                  {e.logo && (
-                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 border border-slate-700 p-1">
-                      <img src={e.logo} alt={e.nom} className="w-full h-full object-contain" />
-                    </div>
-                  )}
-                </div>
-                <p className="text-slate-400 text-xs mb-1 flex items-center gap-1">📍 {e.lieu}</p>
-                <p className="text-slate-400 text-xs mb-4">📅 {e.periode}</p>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">{e.description}</p>
-
-                {/* Infos supplémentaires pour la future école */}
-                {e.futur && e.infos && (
-                  <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4 mb-4">
-                    <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-3">Informations</p>
-                    <div className="space-y-1.5">
-                      {e.infos.map((info) => (
-                        <div key={info.label} className="flex items-start justify-between gap-2">
-                          <span className="text-slate-500 text-xs">{info.label}</span>
-                          <span className="text-slate-300 text-xs font-medium text-right">{info.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div>
-                  <p className="text-slate-500 text-xs uppercase tracking-wider mb-2">
-                    {e.futur ? "Matières visées" : "Matières principales"}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {e.matieres.map((m) => (
-                      <span key={m} className={`text-xs px-2.5 py-1 rounded-full border ${e.futur ? "bg-amber-500/10 text-amber-300 border-amber-500/20" : "bg-slate-800 text-slate-300 border-slate-700"}`}>
-                        {m}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
           ))}
         </div>
-      </Section>
-
-      {/* ── MES ENTREPRISES ── */}
-      <Section id="entreprises" title="Mes entreprises" subtitle="Stage et alternance — expériences en milieu professionnel" dark>
-        <div className="grid md:grid-cols-2 gap-6">
-          {PROFILE.entreprises.map((e, i) => (
-            <div key={i} className="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/40 transition-all">
-              <div className={`h-3 bg-gradient-to-r ${e.couleur}`} />
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1 pr-3">
-                    <h3 className="text-white font-black text-lg">{e.nom}</h3>
-                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${e.type === "Alternance" ? "text-sky-400 bg-sky-500/10 border-sky-500/25" : "text-emerald-400 bg-emerald-500/10 border-emerald-500/25"}`}>
-                      {e.type}
-                    </span>
-                  </div>
-                  {e.logo && (
-                    <div className="w-16 h-16 rounded-xl overflow-hidden bg-white flex items-center justify-center flex-shrink-0 border border-slate-700 p-1">
-                      <img src={e.logo} alt={e.nom} className="w-full h-full object-contain" />
-                    </div>
-                  )}
-                </div>
-                <p className="text-slate-400 text-xs mb-1">📍 {e.lieu}</p>
-                <p className="text-slate-400 text-xs mb-1">📅 {e.periode}</p>
-                {e.fondation && <p className="text-slate-400 text-xs mb-1">🏭 Fondée en {e.fondation} · {e.effectif}</p>}
-                {e.secteur && <p className="text-slate-400 text-xs mb-4">💼 {e.secteur}</p>}
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">{e.description}</p>
-                <div>
-                  <p className="text-slate-500 text-xs uppercase tracking-wider mb-2">Missions</p>
-                  <ul className="space-y-1.5">
-                    {e.missions.map((m, j) => (
-                      <li key={j} className="flex items-start gap-2 text-slate-300 text-sm">
-                        <span className="text-sky-400 mt-0.5 flex-shrink-0">→</span>{m}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-    </>
+      </div>
+    </Section>
   );
 }
 
@@ -336,7 +218,6 @@ const PROJETS_ENTREPRISE = [
   "virtualisation",
 ];
 const PROJETS_PERSO = [
-  "ap2-m2l",
   "cybersecurite-linux",
   "veille-ransomware",
   "site-web",
