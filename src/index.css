@@ -1,1 +1,229 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════
+   PORTFOLIO BTS SIO SISR - THEME HACKER / TERMINAL
+   Mehdi Ahmiddouch - 2026
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Variables CSS globales */
+:root {
+  --green: #00ff41;
+  --green-dim: #00c932;
+  --green-glow: rgba(0, 255, 65, 0.15);
+  --green-border: rgba(0, 255, 65, 0.3);
+  --terminal-bg: #0a0f0a;
+  --terminal-dark: #060906;
+  --sky: #38bdf8;
+  --sky-glow: rgba(56, 189, 248, 0.15);
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #020617; /* slate-950 */
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCROLLBAR TERMINAL ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--green-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-dim);
+}
+
+/* ── ANIMATIONS ── */
+
+/* Clignotement curseur terminal */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Scan line (effet CRT léger) */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Pulsation glow verte */
+@keyframes green-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--green-glow); }
+  50%       { box-shadow: 0 0 16px 4px var(--green-glow); }
+}
+
+/* Fade in depuis le bas */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Typewriter (géré en JS, mais la classe utilitaire) */
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* Flicker terminal */
+@keyframes flicker {
+  0%, 98%, 100% { opacity: 1; }
+  99%            { opacity: 0.85; }
+}
+
+/* ── CLASSES UTILITAIRES TERMINAL ── */
+
+/* Curseur clignotant */
+.cursor-blink::after {
+  content: '█';
+  color: var(--green);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+/* Texte vert terminal */
+.text-terminal {
+  color: var(--green);
+  font-family: 'Courier New', 'Consolas', monospace;
+}
+
+/* Bordure vert terminal */
+.border-terminal {
+  border-color: var(--green-border);
+}
+
+/* Glow vert */
+.glow-green {
+  text-shadow: 0 0 8px var(--green), 0 0 20px var(--green-glow);
+}
+
+/* Badge terminal */
+.badge-terminal {
+  background: rgba(0, 255, 65, 0.08);
+  color: var(--green);
+  border: 1px solid var(--green-border);
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 0.7rem;
+  padding: 2px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* Fenêtre terminal */
+.terminal-window {
+  background: #0d1117;
+  border: 1px solid var(--green-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 255, 65, 0.05), 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.terminal-header {
+  background: #161b22;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(0, 255, 65, 0.15);
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal-body {
+  padding: 20px;
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--green);
+}
+
+.terminal-prompt::before {
+  content: '$ ';
+  color: var(--green-dim);
+  user-select: none;
+}
+
+.terminal-comment {
+  color: #4a5568;
+}
+
+/* Grille de fond type terminal/matrix */
+.bg-matrix-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Grille bleue (pour sections standard) */
+.bg-sky-grid {
+  background-image:
+    linear-gradient(rgba(14, 165, 233, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Effet CRT scan line (optionnel, sur le hero) */
+.crt-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Animation fade up pour les cards */
+.animate-fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+/* ── IMAGE FALLBACK ── */
+img[src=""],
+img:not([src]) {
+  display: none;
+}
+
+/* Placeholder quand image manquante */
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b;
+  color: #475569;
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+
+/* ── SELECTION COULEUR ── */
+::selection {
+  background: rgba(0, 255, 65, 0.2);
+  color: #00ff41;
+}

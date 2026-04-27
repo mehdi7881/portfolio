@@ -1,0 +1,33 @@
+Voici mes informations à intégrer dans le portfolio :
+
+Nom : Ahmiddouch
+Formation :BTS SIO
+École : H3 campus à POISSY
+Option :SISR (Solutions d’Infrastructure, Systèmes et Réseaux)
+Phrase d’introduction : Étudiant en BTS SIO option SISR, je développe des compétences en administration systèmes, réseaux et cybersécurité afin de concevoir, déployer et sécuriser des infrastructures informatiques professionnelles.
+Projet professionnel : 
+À propos / présentation :
+Expérience / stage / alternance :
+Compétences :
+Projets :
+Veille technologique :
+Contact :
+LinkedIn :
+GitHub :
+
+Je veux que tu remplaces tout le contenu par ces informations en gardant la même structure et la même mise en page que le portfolio de référence.
+Ne change pas la structure générale du portfolio de référence.
+Je veux vraiment :
+- la même disposition des sections
+- le même ordre
+- le même style de navigation
+- le même type de présentation des blocs
+- la même logique de portfolio BTS SIO
+
+Tu adaptes seulement :
+- mon nom
+- mes textes
+- mes projets
+- mes compétences
+- ma veille
+- mes coordonnées

@@ -1,0 +1,110 @@
+1. Identité
+
+Prénom + Nom : Mehdi Ahmiddouch  
+École / établissement : H3 CAMPUS
+Entreprise de stage : Mairie de Coignières
+Entreprise d'alternance : ATERMES
+
+---
+
+2. À propos
+
+Je suis étudiant en BTS SIO option SISR, passionné par l’administration systèmes, réseaux et la cybersécurité. Je m’investis dans la mise en place et la sécurisation d’infrastructures informatiques fiables et performantes.
+
+Mon parcours m’a permis d’acquérir des compétences techniques en systèmes Linux, en supervision et en gestion de réseau.
+
+J’ai réalisé un stage de 8 semaines à la mairie de Coignières, où j’ai participé à l’installation et à la configuration de serveurs, à la supervision du réseau et au support technique des utilisateurs.
+
+Mon objectif professionnel est de devenir administrateur systèmes et réseaux, avec une spécialisation en cybersécurité.
+
+---
+
+3. Compétences
+
+Systèmes :
+- Installation et configuration Debian 12
+- Administration Linux
+- Virtualisation (VirtualBox)
+- Gestion des utilisateurs
+
+Réseaux :
+- Configuration réseau
+- VPN
+- Analyse d’infrastructure
+- Schémas réseau
+
+Sécurité :
+- SSH (accès sécurisé)
+- Sensibilisation aux attaques (2FA, cybersécurité)
+- Gestion antivirus
+
+Supervision :
+- Zabbix (monitoring réseau et serveur)
+
+Support :
+- Résolution incidents utilisateurs
+- Maintenance matériel
+- Assistance technique
+
+Gestion de parc :
+- GLPI
+- OCS Inventory
+- Déploiement via GPO
+- Filezilla en FTPS
+
+---
+
+4. Réalisations
+
+Projet : Infrastructure serveur Debian + supervision  
+Description : Installation et configuration d’un serveur HP ProLiant sous Debian 12 avec mise en place d’une supervision réseau.  
+Technologies utilisées : Debian 12, Zabbix  
+
+Projet : Infrastructure réseau mairie  
+Description : Analyse et réalisation d’un schéma de l’infrastructure réseau de la mairie de Coignières.  
+Technologies utilisées : Réseau, documentation  
+
+Projet : Support technique utilisateurs  
+Description : Intervention sur différents sites pour résoudre des incidents réseau, VPN et matériel.  
+Technologies utilisées : Réseau, maintenance  
+
+Projet : Cybersécurité & Linux  
+Description : Étude du contournement du 2FA, configuration d’une VM Kali Linux et mise en place d’un accès SSH sécurisé.  
+Technologies utilisées : Kali Linux, SSH  
+
+Projet : Virtualisation & services  
+Description : Mise en place de machines virtuelles et d’un serveur FTPS avec FileZilla.  
+Technologies utilisées : VirtualBox, FileZilla  
+
+Projet : Gestion de parc informatique  
+Description : Déploiement d’une solution GLPI + OCS avec installation des agents via GPO.  
+Technologies utilisées : GLPI, OCS, Windows Server  
+
+Projet : Développement web  
+Description : Création d’un site web en HTML/CSS avec conception graphique.  
+Technologies utilisées : HTML, CSS  
+
+---
+
+5. Veille technologique
+
+Sujet : Ransomware as a Service (RaaS)  
+Date : 2025-2026  
+Résumé : Le modèle RaaS permet à des cybercriminels de louer des ransomwares à d’autres attaquants, facilitant la multiplication des attaques.  
+Source : Articles cybersécurité  
+Lien : à compléter  
+
+Sujet : Cybersécurité et authentification  
+Date : 2024  
+Résumé : Étude des mécanismes d’authentification et des techniques de contournement du 2FA.  
+Source : Travaux pratiques  
+Lien : à compléter  
+
+---
+
+6. Contact
+
+Email : mehdiahmiddouch78@gmail.com
+LinkedIn : https://www.linkedin.com/in/mehdi-ahmiddouch-bb491b341/ 
+GitHub : https://github.com/mehdi7881
+Ville / région : Trappes Île-de-France
