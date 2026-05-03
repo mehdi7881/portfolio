@@ -74,17 +74,8 @@ const ENTREPRISES_DETAIL = {
       "Test et verification des cables reseau (Wire Tracker)",
       "Creation de comptes utilisateurs (GLPI, messagerie professionnelle)",
     ],
-    galerie: [
-      { src: "/assets/debian-server.JPG", legende: "Serveur HP ProLiant Debian 12 avec interface Zabbix en production" },
-      { src: "/assets/zabbix-install.png", legende: "Installation reussie de l'interface Zabbix 6.0" },
-      { src: "/assets/zabbix_dashboard.png", legende: "Tableau de bord Zabbix - supervision CPU et espace disque" },
-      { src: "/assets/wiretracker.jpeg", legende: "Wire Tracker - test et verification des cables reseau RJ45" },
-      { src: "/assets/borne-ccas.JPG", legende: "Installation de bornes Wi-Fi TP-Link au CCAS de Coignieres" },
-      { src: "/assets/inframairie.png", legende: "Schema d'infrastructure reseau de la Mairie de Coignieres" },
-    ],
-    documents: [
-      { nom: "Documentation Zabbix", fichier: "/assets/Documentation_zabbix.pdf", description: "Guide d'installation et configuration de l'agent Zabbix redige lors du stage" },
-    ],
+    galerie: [],
+    documents: [],
     technologies: ["Debian 12", "Zabbix 6.0", "Linux", "MariaDB", "Apache2", "GLPI", "Wire Tracker", "TP-Link", "VPN", "Windows Server"],
   },
 };
