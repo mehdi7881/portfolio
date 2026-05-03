@@ -453,6 +453,7 @@ const PROJETS_ENTREPRISE = [
 ];
 const PROJETS_PERSO = [
   "ap2-m2l",
+  "inventaire-proxmox",
   "glpi-ocs-m2l",
   "nagios-m2l",
   "cybersecurite-linux",
