@@ -886,6 +886,57 @@ export function Contact() {
           </a>
         </div>
       </div>
+
+      {/* Certifications LinkedIn Learning */}
+      <div className="mt-10">
+        <h3 className="text-white font-black text-xl mb-4">Certifications</h3>
+        <div className="grid md:grid-cols-2 gap-4">
+          <a href="/assets/CertificateOfCompletion_Maitriser le contrat de travail de lembauche a la rupture.pdf" target="_blank" rel="noreferrer"
+            className="flex items-center gap-4 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-2xl px-5 py-4 group transition-all">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white text-lg flex-shrink-0">🎓</div>
+            <div className="flex-1">
+              <p className="text-slate-500 text-xs uppercase tracking-wider mb-1">LinkedIn Learning</p>
+              <p className="text-white font-semibold text-sm group-hover:text-sky-400 transition-colors">Maîtriser le contrat de travail de l'embauche à la rupture</p>
+            </div>
+            <span className="text-sky-400 group-hover:translate-x-1 transition-transform flex-shrink-0">↓</span>
+          </a>
+          <a href="/assets/CertificateOfCompletion_Faire une bonne premiere impression .pdf" target="_blank" rel="noreferrer"
+            className="flex items-center gap-4 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-2xl px-5 py-4 group transition-all">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white text-lg flex-shrink-0">🎓</div>
+            <div className="flex-1">
+              <p className="text-slate-500 text-xs uppercase tracking-wider mb-1">LinkedIn Learning</p>
+              <p className="text-white font-semibold text-sm group-hover:text-sky-400 transition-colors">Faire une bonne première impression</p>
+            </div>
+            <span className="text-sky-400 group-hover:translate-x-1 transition-transform flex-shrink-0">↓</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Certifications LinkedIn Learning */}
+      <div className="mt-10">
+        <h3 className="text-white font-black text-xl mb-4">Certifications</h3>
+        <div className="grid md:grid-cols-2 gap-4">
+          <a href="/assets/CertificateOfCompletion_Maitriser le contrat de travail de lembauche a la rupture.pdf" target="_blank" rel="noreferrer"
+            className="flex items-center gap-4 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-2xl px-5 py-4 group transition-all">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white text-lg flex-shrink-0">🎓</div>
+            <div className="flex-1">
+              <p className="text-slate-500 text-xs uppercase tracking-wider mb-1">LinkedIn Learning</p>
+              <p className="text-white font-semibold text-sm group-hover:text-sky-400 transition-colors">Maîtriser le contrat de travail de l'embauche à la rupture</p>
+            </div>
+            <span className="text-sky-400 group-hover:translate-x-1 transition-transform flex-shrink-0">↓</span>
+          </a>
+          <a href="/assets/CertificateOfCompletion_Faire une bonne premiere impression .pdf" target="_blank" rel="noreferrer"
+            className="flex items-center gap-4 bg-slate-900 border border-slate-800 hover:border-sky-500/40 rounded-2xl px-5 py-4 group transition-all">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white text-lg flex-shrink-0">🎓</div>
+            <div className="flex-1">
+              <p className="text-slate-500 text-xs uppercase tracking-wider mb-1">LinkedIn Learning</p>
+              <p className="text-white font-semibold text-sm group-hover:text-sky-400 transition-colors">Faire une bonne première impression</p>
+            </div>
+            <span className="text-sky-400 group-hover:translate-x-1 transition-transform flex-shrink-0">↓</span>
+          </a>
+        </div>
+      </div>
+
     </Section>
   );
 }
