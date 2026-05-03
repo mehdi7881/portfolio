@@ -456,7 +456,6 @@ const PROJETS_PERSO = [
   "inventaire-proxmox",
   "glpi-ocs-m2l",
   "nagios-m2l",
-  "cybersecurite-linux",
   "veille-ransomware",
   "vlan-ccna",
   "site-web",
