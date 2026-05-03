@@ -237,7 +237,7 @@ export const PROJETS = [
     ],
     images: [],
     documents: [
-      { nom: "Documentation FileZilla Server", fichier: "/assets/filezilla-documentation.odt", description: "Documentation complete de l'installation et configuration du serveur FTPS" },
+      { nom: "Documentation FileZilla Server", fichier: "/assets/Filezilla Server.pdf", description: "Documentation complete de l'installation et configuration du serveur FTPS" },
     ],
     couleur: "from-sky-600 to-indigo-500",
     logo: "/assets/filezilla.webp",
@@ -272,7 +272,7 @@ export const PROJETS = [
     ],
     images: [],
     documents: [
-      { nom: "Fiche descriptive RP2 - GLPI", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI__7_.pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
+      { nom: "Fiche descriptive RP2 - GLPI", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI (7).pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI.docx",
     lienProduction: "https://bit.ly/4sfn9yF",
@@ -307,7 +307,7 @@ export const PROJETS = [
     ],
     images: [],
     documents: [
-      { nom: "Fiche descriptive RP2 - Nagios", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS__6_.pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
+      { nom: "Fiche descriptive RP2 - Nagios", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS (6).pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS.docx",
     lienProduction: "https://bit.ly/4sfn9yF",
@@ -463,7 +463,7 @@ export const PROJETS = [
     id: "cybersecurite-linux",
     titre: "Cybersecurite & Linux",
     courte: "Etude du 2FA, VM Kali Linux et acces SSH securise",
-    description: "Etude des mecanismes d'authentification a deux facteurs (2FA) et de leurs vulnerabilites, configuration d'une machine virtuelle Kali Linux pour des tests de penetration, et mise en place d'un acces SSH securise avec cles asymetriques.",
+    description: "Étude des mécanismes d'authentification à deux facteurs (2FA) et de leurs vulnérabilités, configuration d'une machine virtuelle Kali Linux pour des tests de pénétration, et mise en place d'un accès SSH sécurisé avec clés asymétriques. Dans le cadre d'un TP Challenge, j'ai également réalisé une attaque MITM par ARP Spoofing avec Ettercap sur un réseau virtualisé : en empoisonnant la table ARP de la victime, le trafic réseau transitait par Kali Linux et était intercepté en clair via Wireshark, démontrant concrètement les risques liés aux réseaux non sécurisés.",
     contexte: "TP de securite informatique a l'IPSSI - comprendre les attaques et les defenses.",
     objectif: "Comprendre le contournement du 2FA et securiser un acces distant via SSH.",
     resultat: "Maitrise des techniques d'attaque 2FA et d'un acces SSH securise par cles RSA.",
@@ -539,7 +539,7 @@ export const PROJETS = [
       },
       {
         nom: "Plan d'affaires - Flock Soccer",
-        fichier: "/assets/Plans Flock soccer.odt",
+        fichier: "/assets/plans_flock_soccer.pdf",
         description: "Plan d'affaires complet de l'entreprise virtuelle AP1"
       },
     ],
