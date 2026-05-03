@@ -187,7 +187,9 @@ export const PROJETS = [
     images: [
       { src: "/assets/inframairie.png", legende: "Schema d'infrastructure reseau de la Mairie de Coignieres - VLANs, switches, pare-feu, videosurveillance" },
     ],
-    documents: [],
+    documents: [
+      { nom: "Schéma infrastructure réseau Mairie de Coignières", fichier: "/assets/inframairie.drawio.pdf", description: "Schéma complet de l'infrastructure réseau de la Mairie de Coignières" },
+    ],
     couleur: "from-emerald-600 to-teal-500",
     icon: "NET",
   },
@@ -400,9 +402,9 @@ export const PROJETS = [
     icon: "VLN",
   },
   {
-    id: "inventaire-proxmox",
-    titre: "Inventaire du matériel informatique et mise en place d'une infrastructure de virtualisation avec Proxmox",
-    courte: "Inventaire complet du parc M2L et déploiement d'une infrastructure Proxmox",
+    id: "inventaire matériel et étiquettage",
+    titre: "Inventaire du matériel informatique et étiquettage",
+    courte: "Inventaire et étiquettage complet du parc M2L",
     description: "Avant de déployer GLPI et Nagios sur le réseau de la M2L, notre équipe a réalisé un inventaire complet du matériel informatique existant : routeurs Cisco, commutateurs, points d'accès WiFi, serveurs et postes clients. Cet inventaire a servi de base pour la mise en place d'une infrastructure de virtualisation avec Proxmox.",
     contexte: "Projet scolaire AP2 — IPSSI SQY, réalisé en équipe avant le déploiement GLPI/OCS et Nagios sur le réseau de la M2L.",
     objectif: "Recenser et documenter l'ensemble du matériel informatique de la M2L, puis mettre en place une infrastructure de virtualisation Proxmox pour héberger les services.",
