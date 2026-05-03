@@ -911,3 +911,7 @@ export function Contact() {
           </a>
         </div>
       </div>
+
+    </Section>
+  );
+}
