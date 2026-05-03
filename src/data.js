@@ -153,8 +153,14 @@ export const PROJETS = [
       "Configuration des alertes (CPU > 90%, espace disque)",
       "Documentation technique de l'installation",
     ],
-    images: [],
-    documents: [],
+    images: [
+      { src: "/assets/debian-server.JPG", legende: "Serveur HP ProLiant Debian 12 avec interface Zabbix en production" },
+      { src: "/assets/zabbix-install.png", legende: "Installation reussie de l'interface Zabbix 6.0" },
+      { src: "/assets/zabbix_dashboard.png", legende: "Tableau de bord Zabbix - supervision CPU et espace disque" },
+    ],
+    documents: [
+      { nom: "Documentation Zabbix", fichier: "/assets/Documentation_zabbix.pdf", description: "Guide d'installation et configuration de l'agent Zabbix redige lors du stage" },
+    ],
     couleur: "from-blue-600 to-cyan-500",
     logo: "/assets/zabbix.webp",
     icon: "MON",
