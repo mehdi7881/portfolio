@@ -153,14 +153,8 @@ export const PROJETS = [
       "Configuration des alertes (CPU > 90%, espace disque)",
       "Documentation technique de l'installation",
     ],
-    images: [
-      { src: "/assets/debian-server.JPG", legende: "Serveur Debian 12 + interface Zabbix en production" },
-      { src: "/assets/zabbix_dashboard.png", legende: "Tableau de bord Zabbix - supervision CPU et espace disque" },
-      { src: "/assets/zabbix-install.png", legende: "Installation reussie de l'interface Zabbix" },
-    ],
-    documents: [
-      { nom: "Documentation Zabbix", fichier: "/assets/Documentation_zabbix.pdf", description: "Guide d'installation et configuration de l'agent Zabbix" },
-    ],
+    images: [],
+    documents: [],
     couleur: "from-blue-600 to-cyan-500",
     logo: "/assets/zabbix.webp",
     icon: "MON",
@@ -272,7 +266,7 @@ export const PROJETS = [
     ],
     images: [],
     documents: [
-      { nom: "Fiche descriptive RP2 - GLPI", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI.docx", description: "Fiche officielle BTS SIO E6 - Administration des systemes et reseaux" },
+      { nom: "Fiche descriptive RP2 - GLPI", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI__7_.pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI.docx",
     lienProduction: "https://bit.ly/4sfn9yF",
@@ -307,7 +301,7 @@ export const PROJETS = [
     ],
     images: [],
     documents: [
-      { nom: "Fiche descriptive RP2 - Nagios", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS.docx", description: "Fiche officielle BTS SIO E6 - Administration des systemes et reseaux" },
+      { nom: "Fiche descriptive RP2 - Nagios", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS__6_.pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS.docx",
     lienProduction: "https://bit.ly/4sfn9yF",
