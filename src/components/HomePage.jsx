@@ -17,7 +17,7 @@ export function Hero({ onNavigate }) {
       <div className="max-w-6xl mx-auto px-6 py-32 relative z-10">
         <div className="inline-flex items-center gap-2 bg-sky-500/10 border border-sky-500/25 text-sky-400 text-xs font-mono px-4 py-2 rounded-full mb-8 tracking-widest uppercase">
           <span className="w-1.5 h-1.5 bg-sky-400 rounded-full animate-pulse" />
-          Portfolio BTS SIO SISR - E5
+          Portfolio BTS SIO SISR - E5 · Session 2027
         </div>
 
         <h1 className="text-5xl md:text-7xl font-black text-white mb-5 leading-[1.05] tracking-tight">
@@ -44,7 +44,7 @@ export function Hero({ onNavigate }) {
             { label: "Formation", value: "BTS SIO SISR", icon: "🎓" },
             { label: "École", value: "H3 Campus", icon: "🏫" },
             { label: "Stage", value: "Mairie Coignières", icon: "🏛️" },
-            { label: "Alternance", value: "ATERMES", icon: "💼" },
+            { label: "Alternance 2025-26", value: "ATERMES", icon: "💼" },
           ].map((c) => (
             <div key={c.label} className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 backdrop-blur hover:border-slate-700 transition-colors">
               <p className="text-2xl mb-2">{c.icon}</p>
@@ -149,13 +149,15 @@ export function APropos({ onNavigate }) {
                   <p className="text-white font-bold text-sm">{e.nom}</p>
                 </div>
                 <p className="text-slate-500 text-xs mb-3">{e.periode} · {e.lieu}</p>
-                <ul className="space-y-1">
-                  {e.missions.slice(0, 3).map((m, j) => (
-                    <li key={j} className="flex items-start gap-2 text-slate-300 text-xs">
-                      <span className="text-sky-400 mt-0.5 flex-shrink-0">·</span>{m}
-                    </li>
-                  ))}
-                </ul>
+                {e.missions.length > 0 && (
+                  <ul className="space-y-1">
+                    {e.missions.slice(0, 3).map((m, j) => (
+                      <li key={j} className="flex items-start gap-2 text-slate-300 text-xs">
+                        <span className="text-sky-400 mt-0.5 flex-shrink-0">·</span>{m}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             ))}
           </div>
@@ -164,7 +166,7 @@ export function APropos({ onNavigate }) {
 
       {/* ── MES ÉCOLES ── */}
       <Section id="ecoles" title="Mes écoles" subtitle="Mon parcours de formation et mon projet d'études">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {PROFILE.ecoles.map((e, i) => (
             <div key={i} className={`relative bg-slate-900 border rounded-2xl overflow-hidden hover:border-opacity-60 transition-all ${e.futur ? "border-amber-500/40 hover:border-amber-500/70" : "border-slate-800 hover:border-sky-500/40"}`}>
               {/* Barre couleur en haut */}
@@ -231,12 +233,12 @@ export function APropos({ onNavigate }) {
 
       {/* ── MES ENTREPRISES ── */}
       <Section id="entreprises" title="Mes entreprises" subtitle="Stage et alternance - expériences en milieu professionnel" dark>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROFILE.entreprises.map((e, i) => (
             <button
               key={i}
-              onClick={() => onNavigate("entreprise", e.nom)}
-              className="text-left bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/40 transition-all hover:-translate-y-1 group"
+              onClick={() => !e.enRecherche && onNavigate("entreprise", e.nom)}
+              className={`text-left bg-slate-950 border rounded-2xl overflow-hidden transition-all group ${e.enRecherche ? "border-dashed border-slate-700 cursor-default" : "border-slate-800 hover:border-sky-500/40 hover:-translate-y-1"}`}
             >
               <div className={`h-3 bg-gradient-to-r ${e.couleur}`} />
               <div className="p-6">
@@ -258,19 +260,28 @@ export function APropos({ onNavigate }) {
                 {e.fondation && <p className="text-slate-400 text-xs mb-1">🏭 Fondée en {e.fondation} · {e.effectif}</p>}
                 {e.secteur && <p className="text-slate-400 text-xs mb-4">💼 {e.secteur}</p>}
                 <p className="text-slate-300 text-sm leading-relaxed mb-4">{e.description}</p>
-                <div>
-                  <p className="text-slate-500 text-xs uppercase tracking-wider mb-2">Missions</p>
-                  <ul className="space-y-1.5">
-                    {e.missions.slice(0, 3).map((m, j) => (
-                      <li key={j} className="flex items-start gap-2 text-slate-300 text-sm">
-                        <span className="text-sky-400 mt-0.5 flex-shrink-0">→</span>{m}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex items-center gap-1 mt-4 text-sky-400 text-sm font-semibold group-hover:gap-2 transition-all">
-                  Voir le detail <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </div>
+                {e.missions.length > 0 && (
+                  <div>
+                    <p className="text-slate-500 text-xs uppercase tracking-wider mb-2">Missions</p>
+                    <ul className="space-y-1.5">
+                      {e.missions.slice(0, 3).map((m, j) => (
+                        <li key={j} className="flex items-start gap-2 text-slate-300 text-sm">
+                          <span className="text-sky-400 mt-0.5 flex-shrink-0">→</span>{m}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {e.enRecherche ? (
+                  <div className="mt-4 inline-flex items-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/25 text-xs font-semibold px-3 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
+                    Recherche en cours
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1 mt-4 text-sky-400 text-sm font-semibold group-hover:gap-2 transition-all">
+                    Voir le detail <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
+                )}
               </div>
             </button>
           ))}
@@ -454,9 +465,9 @@ const PROJETS_ENTREPRISE = [
 const PROJETS_PERSO = [
   "ap2-m2l",
   "inventaire-proxmox",
+  "inventaire-materiel-2027",
   "glpi-ocs-m2l",
   "nagios-m2l",
-  "veille-ransomware",
   "vlan-ccna",
   "site-web",
 ];
@@ -760,7 +771,7 @@ export function Veille({ onNavigate }) {
 // ─── TABLEAU DE SYNTHÈSE ─────────────────────────────────────────────────────
 export function TableauSynthese() {
   return (
-    <Section id="tableau" title="Tableau de synthèse" subtitle="Réalisations professionnelles BTS SIO SISR - Session 2026">
+    <Section id="tableau" title="Tableau de synthèse" subtitle="Réalisations professionnelles BTS SIO SISR - Session 2027">
       <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-sky-600/20 to-blue-600/20 border-b border-slate-800 px-8 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
@@ -785,7 +796,7 @@ export function TableauSynthese() {
           {[
             { label: "Nom et prénom", value: "AHMIDDOUCH Mehdi" },
             { label: "Centre de formation", value: "H3 Campus – IPSSI SQY" },
-            { label: "Session", value: "2025 – 2026" },
+            { label: "Session", value: "2026 – 2027" },
           ].map((c) => (
             <div key={c.label}>
               <p className="text-slate-500 text-xs uppercase tracking-wider mb-1">{c.label}</p>
@@ -827,7 +838,7 @@ export function TableauSynthese() {
 export function Contact() {
   const { contact } = PROFILE;
   return (
-    <Section id="contact" title="Contact" subtitle="Disponible pour un stage ou une alternance" dark>
+    <Section id="contact" title="Contact" subtitle="À la recherche d'un stage de 10 jours (alterné avec les cours)" dark>
       <div className="grid md:grid-cols-2 gap-8 items-start">
         <div>
           <p className="text-slate-300 leading-relaxed mb-6">

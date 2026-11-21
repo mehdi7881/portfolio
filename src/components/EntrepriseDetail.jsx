@@ -6,7 +6,7 @@ const ENTREPRISES_DETAIL = {
     nom: "ATERMES",
     logo: "/assets/logo-atermes.png",
     type: "Alternance",
-    periode: "Septembre 2025 - Juin 2026",
+    periode: "Septembre 2025 - Aout 2026",
     lieu: "Montigny-le-Bretonneux, Yvelines (78)",
     siteWeb: "https://www.atermes.fr",
     couleur: "from-red-700 to-rose-800",

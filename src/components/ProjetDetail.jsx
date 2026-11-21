@@ -250,7 +250,7 @@ export function ProjetDetail({ projetId, onNavigate }) {
                   <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 text-sm">W</div>
                   <div>
                     <p className="text-white text-sm font-semibold">Fiche descriptive BTS SIO - Epreuve E6</p>
-                    <p className="text-slate-400 text-xs">Session 2026 - AHMIDDOUCH Mehdi</p>
+                    <p className="text-slate-400 text-xs">Realisee en 2025-2026 - AHMIDDOUCH Mehdi</p>
                   </div>
                 </div>
                 <a href={projet.ficheWord} download

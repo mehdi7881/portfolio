@@ -166,7 +166,7 @@ export function Footer() {
   return (
     <footer className="bg-slate-950 border-t border-slate-800/60 py-8">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
-        <p>2026 - Mehdi Ahmiddouch - BTS SIO SISR</p>
+        <p>2026-2027 - Mehdi Ahmiddouch - BTS SIO SISR</p>
         <div className="flex gap-5">
           <a href="https://www.linkedin.com/in/mehdi-ahmiddouch-bb491b341/" target="_blank" rel="noreferrer" className="hover:text-sky-400 transition-colors">LinkedIn</a>
           <a href="https://github.com/mehdi7881" target="_blank" rel="noreferrer" className="hover:text-sky-400 transition-colors">GitHub</a>
