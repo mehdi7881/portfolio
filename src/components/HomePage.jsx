@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Section, TechBadge } from "./ui.jsx";
 import { PROFILE, PROJETS, VEILLE } from "../data.js";
 
@@ -409,7 +408,7 @@ export function Competences({ onNavigate }) {
       couleur: "border-purple-500/40 bg-purple-500/5",
       badge: "text-purple-400",
       preuves: [
-        { href: "#veille", titre: "Veille technologique", fait: "Flux d'actualités cybersécurité et articles sélectionnés, sur la page Veille.", outils: ["Flux RSS"] },
+        { href: "#veille", titre: "Veille technologique", fait: "Articles de cybersécurité sélectionnés à partir d'alertes Google, sur la page Veille.", outils: ["Alertes Google"] },
         { id: "cybersecurite-linux", fait: "Étude du 2FA, accès SSH par clés RSA et rapport de sécurité sur une VM Kali Linux." },
         { href: "#ecoles", titre: "Poursuite d'études", fait: "Projet de Licence Pro MRIT parcours ASUR (cybersécurité) à l'IUT de Vélizy-Rambouillet." },
       ],
@@ -565,61 +564,8 @@ export function Realisations({ onNavigate }) {
 
 // ─── VEILLE ──────────────────────────────────────────────────────────────────
 export function Veille({ onNavigate }) {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [activeSource, setActiveSource] = useState("tous");
-
-  const sources = [
-    { id: "lemagit", nom: "LeMagIT", url: "https://www.lemagit.fr/rss/actualites/Securite", couleur: "sky", site: "https://www.lemagit.fr/actualites/Securite" },
-    { id: "anssi", nom: "ANSSI", url: "https://www.cert.ssi.gouv.fr/feed/", couleur: "emerald", site: "https://cyber.gouv.fr/" },
-    { id: "itconnect", nom: "IT-Connect", url: "https://www.it-connect.fr/feed/", couleur: "violet", site: "https://www.it-connect.fr/" },
-    { id: "lemonde", nom: "Le Monde Informatique", url: "https://www.lemondeinformatique.fr/flux-rss/thematique/securite/rss.xml", couleur: "amber", site: "https://www.lemondeinformatique.fr/" },
-  ];
-
-  useEffect(() => {
-    const fetchFeeds = async () => {
-      setLoading(true);
-      try {
-        const proxy = "https://api.rss2json.com/v1/api.json?rss_url=";
-        const results = await Promise.allSettled(
-          sources.map(async (s) => {
-            const res = await fetch(`${proxy}${encodeURIComponent(s.url)}&count=3`);
-            const data = await res.json();
-            if (data.status === "ok") {
-              return data.items.map((item) => ({
-                titre: item.title,
-                date: new Date(item.pubDate).toLocaleDateString("fr-FR"),
-                resume: item.description?.replace(/<[^>]*>/g, "").slice(0, 150) + "...",
-                lien: item.link,
-                source: s.nom,
-                sourceId: s.id,
-                couleur: s.couleur,
-              }));
-            }
-            return [];
-          })
-        );
-        const all = results.flatMap((r) => r.status === "fulfilled" ? r.value : []);
-        setArticles(all);
-      } catch (e) {
-        setArticles([]);
-      }
-      setLoading(false);
-    };
-    fetchFeeds();
-  }, []);
-
-  const filtered = activeSource === "tous" ? articles : articles.filter((a) => a.sourceId === activeSource);
-
-  const badgeColors = {
-    sky: "bg-sky-500/10 text-sky-400 border-sky-500/25",
-    emerald: "bg-emerald-500/10 text-emerald-400 border-emerald-500/25",
-    violet: "bg-violet-500/10 text-violet-400 border-violet-500/25",
-    amber: "bg-amber-500/10 text-amber-400 border-amber-500/25",
-  };
-
   return (
-    <Section id="veille" title="Veille technologique" subtitle="Articles sélectionnés et flux RSS en direct — cybersécurité">
+    <Section id="veille" title="Veille technologique" subtitle="Articles sélectionnés — cybersécurité">
 
       {/* Articles sélectionnés (issus de mes alertes Google) */}
       <div className="mb-14">
@@ -668,65 +614,6 @@ export function Veille({ onNavigate }) {
           ))}
         </div>
       </div>
-
-      {/* Sources avec liens */}
-      <div className="mb-8">
-        <p className="text-slate-500 text-xs uppercase tracking-wider mb-4">Sources de veille — flux RSS en direct</p>
-        <div className="flex flex-wrap gap-3">
-          <button
-            onClick={() => setActiveSource("tous")}
-            className={`px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${activeSource === "tous" ? "bg-sky-500 text-white border-sky-500" : "bg-slate-900 text-slate-400 border-slate-700 hover:border-sky-500/50"}`}
-          >
-            Tous les articles
-          </button>
-          {sources.map((s) => (
-            <button
-              key={s.id}
-              onClick={() => setActiveSource(s.id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${activeSource === s.id ? "bg-sky-500/20 text-sky-400 border-sky-500/50" : "bg-slate-900 text-slate-400 border-slate-700 hover:border-sky-500/40"}`}
-            >
-              <span className={`w-2 h-2 rounded-full bg-${s.couleur}-400`} />
-              {s.nom}
-              <a href={s.site} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="text-slate-600 hover:text-sky-400 text-xs ml-1">↗</a>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Articles RSS */}
-      {loading ? (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="bg-slate-900 border border-slate-800 rounded-2xl p-5 animate-pulse">
-              <div className="h-3 bg-slate-800 rounded mb-3 w-1/3" />
-              <div className="h-4 bg-slate-800 rounded mb-2" />
-              <div className="h-4 bg-slate-800 rounded mb-2 w-3/4" />
-              <div className="h-3 bg-slate-800 rounded w-1/2" />
-            </div>
-          ))}
-        </div>
-      ) : filtered.length > 0 ? (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((art, i) => (
-            <a key={i} href={art.lien} target="_blank" rel="noreferrer"
-              className="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-sky-500/40 transition-all hover:-translate-y-1 group flex flex-col">
-              <div className="flex items-center justify-between mb-3">
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${badgeColors[art.couleur] || badgeColors.sky}`}>
-                  {art.source}
-                </span>
-                <span className="text-slate-600 text-xs">{art.date}</span>
-              </div>
-              <h3 className="text-white font-bold text-sm mb-3 group-hover:text-sky-400 transition-colors leading-snug flex-1">{art.titre}</h3>
-              <p className="text-slate-500 text-xs leading-relaxed mb-4">{art.resume}</p>
-              <div className="flex items-center gap-1 text-sky-400 text-xs font-semibold mt-auto">
-                Lire l'article <span className="group-hover:translate-x-1 transition-transform">→</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      ) : (
-        <p className="text-slate-500 text-sm">Les flux RSS en direct sont momentanément indisponibles.</p>
-      )}
 
       {/* ── MÉTHODE DE VEILLE ── */}
       <div className="mt-16">
