@@ -423,7 +423,7 @@ export function Competences({ onNavigate }) {
         <span className="text-xs font-bold px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/25 mb-4 inline-block">BTS SIO SISR</span>
         <h3 className="text-white font-black text-3xl mb-4">Mes compétences, preuves à l'appui</h3>
         <p className="text-slate-400 leading-relaxed max-w-3xl mb-8">
-          Chaque compétence du référentiel est reliée aux réalisations qui la démontrent, avec les outils que j'y ai utilisés. Elles viennent de mes stages, de mon alternance et de ma formation. Clique sur une réalisation pour ouvrir sa fiche détaillée.
+          Chaque compétence du référentiel est reliée aux réalisations qui la démontrent, avec les outils que j'y ai utilisés. Elles viennent de mes stages, de mon alternance et de ma formation.
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">

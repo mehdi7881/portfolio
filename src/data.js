@@ -345,7 +345,6 @@ export const PROJETS = [
     technologies: ["Proxmox", "Ubuntu", "Apache2", "MySQL", "PHP", "OCS Inventory", "GLPI"],
     categorie: "Gestion de parc",
     type: "scolaire",
-    numero: "RP2",
     periode: "Fevrier 2026 - Avril 2026",
     lieu: "H3 Campus - Poissy",
     missions: [
@@ -364,7 +363,7 @@ export const PROJETS = [
       { nom: "Fiche descriptive RP2 - GLPI", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI (7).pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI.docx",
-    lienProduction: "https://bit.ly/4sfn9yF",
+    fichePdf: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI (7).pdf",
     couleur: "from-amber-600 to-orange-500",
     logo: "/assets/ocsGLPIlogo.png",
     icon: "PAR",
@@ -380,7 +379,6 @@ export const PROJETS = [
     technologies: ["Proxmox", "Ubuntu", "Nagios Core", "Apache", "Nagios Plugins", "Postfix", "SSH", "SNMP"],
     categorie: "Supervision",
     type: "scolaire",
-    numero: "RP2",
     periode: "Decembre 2025 - Mars 2026",
     lieu: "H3 Campus",
     missions: [
@@ -399,7 +397,7 @@ export const PROJETS = [
       { nom: "Fiche descriptive RP2 - Nagios", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS (6).pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS.docx",
-    lienProduction: "https://bit.ly/4sfn9yF",
+    fichePdf: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS (6).pdf",
     couleur: "from-slate-700 to-slate-900",
     logo: "/assets/logo-nagios.png",
     icon: "MON",

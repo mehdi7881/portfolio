@@ -238,31 +238,39 @@ export function ProjetDetail({ projetId, onNavigate }) {
           </div>
         )}
 
-        {/* Apercu fiche Word */}
-        {projet.ficheWord && (
+        {/* Apercu du document officiel (PDF) */}
+        {projet.fichePdf && (
           <div>
             <h2 className="text-white font-black text-xl mb-4 flex items-center gap-2">
               <span className="text-sky-400">📄</span> Apercu du document officiel
             </h2>
             <div className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-              <div className="bg-slate-800 px-5 py-3 flex items-center justify-between border-b border-slate-700">
+              <div className="bg-slate-800 px-5 py-3 flex flex-wrap items-center justify-between gap-3 border-b border-slate-700">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 text-sm">W</div>
+                  <div className="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center text-red-400 text-xs font-bold">PDF</div>
                   <div>
                     <p className="text-white text-sm font-semibold">Fiche descriptive BTS SIO - Epreuve E6</p>
                     <p className="text-slate-400 text-xs">Realisee en 2025-2026 - AHMIDDOUCH Mehdi</p>
                   </div>
                 </div>
-                <a href={projet.ficheWord} download
-                  className="flex items-center gap-1.5 bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
-                  Telecharger
-                </a>
+                <div className="flex items-center gap-2">
+                  <a href={encodeURI(projet.fichePdf)} target="_blank" rel="noreferrer"
+                    className="flex items-center gap-1.5 bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                    Ouvrir le PDF
+                  </a>
+                  {projet.ficheWord && (
+                    <a href={encodeURI(projet.ficheWord)} download
+                      className="flex items-center gap-1.5 border border-slate-600 hover:border-sky-500/60 text-slate-300 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors">
+                      Telecharger (Word)
+                    </a>
+                  )}
+                </div>
               </div>
-              <div className="bg-white" style={{ height: "600px" }}>
+              <div className="bg-slate-950" style={{ height: "760px" }}>
                 <iframe
-                  src={`https://docs.google.com/gview?url=${encodeURIComponent("https://mehdi7881.github.io/portfolio" + projet.ficheWord)}&embedded=true`}
+                  src={encodeURI(projet.fichePdf) + "#view=FitH"}
                   className="w-full h-full border-0"
-                  title="Apercu fiche"
+                  title="Apercu de la fiche descriptive"
                 />
               </div>
             </div>
