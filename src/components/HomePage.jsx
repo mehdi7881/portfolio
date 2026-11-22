@@ -297,6 +297,7 @@ function LignePreuve({ preuve, onNavigate }) {
   const projet = preuve.id ? PROJETS.find((p) => p.id === preuve.id) : null;
   if (preuve.id && !projet) return null;
   const titre = projet ? projet.titre : preuve.titre;
+  const outils = projet ? (projet.technologies || []).slice(0, 4) : (preuve.outils || []);
   const cliquable = Boolean(projet || preuve.href);
   const base = "group block w-full text-left bg-slate-900/60 border border-slate-800 rounded-xl p-3 ";
   const contenu = (
@@ -308,6 +309,13 @@ function LignePreuve({ preuve, onNavigate }) {
         )}
       </div>
       <p className="text-slate-400 text-xs leading-relaxed mt-1">{preuve.fait}</p>
+      {outils.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {outils.map((t) => (
+            <span key={t} className="text-[10px] text-slate-300 bg-slate-800 border border-slate-700 px-2 py-0.5 rounded-full">{t}</span>
+          ))}
+        </div>
+      )}
       {projet && (
         <span className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
           {projet.type === "entreprise" ? "En entreprise" : "Scolaire"}
@@ -367,7 +375,7 @@ export function Competences({ onNavigate }) {
       badge: "text-purple-400",
       preuves: [
         { id: "site-web", fait: "Site vitrine HTML/CSS/JS, charte graphique et logo pour l'entreprise fictive NEBULAX (AP1)." },
-        { titre: "Ce portfolio", fait: "Site en ligne pour présenter mes réalisations, développé avec React et Tailwind CSS et publié sur Vercel." },
+        { titre: "Ce portfolio", fait: "Site en ligne pour présenter mes réalisations.", outils: ["React", "Tailwind CSS", "Vercel"] },
       ],
     },
     {
@@ -401,7 +409,7 @@ export function Competences({ onNavigate }) {
       couleur: "border-purple-500/40 bg-purple-500/5",
       badge: "text-purple-400",
       preuves: [
-        { href: "#veille", titre: "Veille technologique", fait: "Flux d'actualités cybersécurité et articles sélectionnés, sur la page Veille." },
+        { href: "#veille", titre: "Veille technologique", fait: "Flux d'actualités cybersécurité et articles sélectionnés, sur la page Veille.", outils: ["Flux RSS"] },
         { id: "cybersecurite-linux", fait: "Étude du 2FA, accès SSH par clés RSA et rapport de sécurité sur une VM Kali Linux." },
         { id: "vlan-ccna", fait: "Travaux pratiques CCNA : VLANs sur 3 commutateurs Cisco, tests d'isolation." },
         { href: "#ecoles", titre: "Poursuite d'études", fait: "Projet de Licence Pro MRIT parcours ASUR (cybersécurité) à l'IUT de Vélizy-Rambouillet." },
@@ -409,86 +417,15 @@ export function Competences({ onNavigate }) {
     },
   ];
 
-  const domaines = [
-    {
-      titre: "Systèmes",
-      items: [
-        { nom: "Debian 12", usage: "Installation sur serveur HP ProLiant, MariaDB et Apache2.", id: "zabbix-supervision" },
-        { nom: "Ubuntu", usage: "Serveur sur Proxmox pour GLPI, OCS Inventory et Nagios.", id: "glpi-ocs-m2l" },
-        { nom: "Windows Server", usage: "Active Directory, GPO et serveur FTPS.", id: "gestion-parc" },
-        { nom: "Proxmox et VirtualBox", usage: "Machines virtuelles et infrastructure de virtualisation.", id: "inventaire-proxmox" },
-      ],
-    },
-    {
-      titre: "Réseaux",
-      items: [
-        { nom: "Cisco Packet Tracer", usage: "VLANs 10, 20 et 30 sur 3 commutateurs, tests d'isolation.", id: "vlan-ccna" },
-        { nom: "VLAN 802.1Q", usage: "Comparaison des VLANs par port, protocole et adresse MAC.", id: "ap2-m2l" },
-        { nom: "Wi-Fi", usage: "Installation et configuration d'une borne TP-Link au CCAS.", id: "support-technique" },
-        { nom: "Matériel Cisco", usage: "Inventaire des routeurs, commutateurs et bornes de la M2L.", id: "inventaire-proxmox" },
-        { nom: "Audit réseau", usage: "Schéma de topologie et documentation des VLANs de la mairie.", id: "infrastructure-reseau" },
-      ],
-    },
-    {
-      titre: "Sécurité",
-      items: [
-        { nom: "SSH par clés RSA", usage: "Accès sécurisé en environnement isolé.", id: "cybersecurite-linux" },
-        { nom: "Kali Linux", usage: "VM de tests de sécurité et étude du 2FA.", id: "cybersecurite-linux" },
-        { nom: "FTPS / TLS", usage: "Serveur de transfert de fichiers chiffré.", id: "virtualisation" },
-        { nom: "WPA2-PSK", usage: "Analyse des niveaux de sécurité Wi-Fi de la mairie.", id: "infrastructure-reseau" },
-        { nom: "Antivirus", usage: "Réinstallation de Trend Micro sur tous les postes.", id: "support-technique" },
-      ],
-    },
-    {
-      titre: "Supervision",
-      items: [
-        { nom: "Zabbix 6.0", usage: "Serveur et agents, hôtes Windows, tableaux de bord, alertes.", id: "zabbix-supervision" },
-        { nom: "Nagios4", usage: "Hôtes, services, seuils critiques et SNMP.", id: "nagios-m2l" },
-        { nom: "Notifications par mail", usage: "Alertes Postfix testées avec une simulation de panne.", id: "nagios-m2l" },
-      ],
-    },
-    {
-      titre: "Gestion de parc",
-      items: [
-        { nom: "GLPI", usage: "Installation, plugin OCS, utilisateurs et droits.", id: "glpi-ocs-m2l" },
-        { nom: "OCS Inventory", usage: "Serveur, agent et remontée des machines.", id: "gestion-parc" },
-        { nom: "GPO", usage: "Déploiement automatique de l'agent OCS sur le domaine.", id: "gestion-parc" },
-        { nom: "Inventaire matériel", usage: "Fiche d'inventaire d'un serveur Dell PowerEdge R520.", id: "inventaire-materiel-2027" },
-      ],
-    },
-    {
-      titre: "Outils et développement",
-      items: [
-        { nom: "HTML, CSS, JavaScript", usage: "Site vitrine de l'entreprise fictive NEBULAX.", id: "site-web" },
-        { nom: "Figma et Canva", usage: "Charte graphique et logo.", id: "site-web" },
-        { nom: "Pack Microsoft Office", usage: "Tableaux d'inventaire Excel et présentations PowerPoint.", id: "ap2-m2l" },
-      ],
-    },
-  ];
-
-  const nbProjets = new Set(
-    referentiel.flatMap((c) => c.preuves.filter((p) => p.id).map((p) => p.id))
-  ).size;
-
   return (
-    <Section id="competences" title="Compétences" subtitle="Ce que je sais faire, avec les réalisations qui le prouvent">
-
-      {/* Introduction */}
-      <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700/60 rounded-3xl p-8 mb-12">
+    <Section id="competences" title="Compétences" subtitle="Ce que je sais faire, avec les réalisations et les outils qui le prouvent">
+      <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700/60 rounded-3xl p-6 md:p-8">
         <span className="text-xs font-bold px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/25 mb-4 inline-block">BTS SIO SISR</span>
         <h3 className="text-white font-black text-3xl mb-4">Mes compétences, preuves à l'appui</h3>
-        <p className="text-slate-400 leading-relaxed max-w-3xl">
-          Chaque compétence du référentiel est reliée aux réalisations qui la démontrent, qu'elles viennent de mes stages, de mon alternance ou de ma formation. Clique sur une réalisation pour ouvrir sa fiche détaillée.
+        <p className="text-slate-400 leading-relaxed max-w-3xl mb-8">
+          Chaque compétence du référentiel est reliée aux réalisations qui la démontrent, avec les outils que j'y ai utilisés. Elles viennent de mes stages, de mon alternance et de ma formation. Clique sur une réalisation pour ouvrir sa fiche détaillée.
         </p>
-        <div className="flex flex-wrap gap-3 mt-6">
-          <span className="text-xs text-slate-300 bg-slate-950 border border-slate-700 px-3 py-1.5 rounded-full">6 compétences du référentiel</span>
-          <span className="text-xs text-slate-300 bg-slate-950 border border-slate-700 px-3 py-1.5 rounded-full">{nbProjets} réalisations à l'appui</span>
-        </div>
-      </div>
 
-      {/* Référentiel relié aux réalisations */}
-      <div className="mb-12">
-        <h3 className="text-white font-black text-xl mb-6">Les compétences du référentiel et leurs preuves</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {referentiel.map((c) => (
             <div key={c.num} className={`border ${c.couleur} rounded-2xl p-6 flex flex-col`}>
@@ -504,42 +441,6 @@ export function Competences({ onNavigate }) {
           ))}
         </div>
       </div>
-
-      {/* Compétences techniques par domaine */}
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8">
-        <h3 className="text-white font-black text-xl mb-2">Compétences techniques par domaine</h3>
-        <p className="text-slate-400 text-sm mb-8">Pour chaque outil, ce que j'en ai fait concrètement. Clique pour ouvrir la réalisation correspondante.</p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {domaines.map((d) => (
-            <div key={d.titre} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5">
-              <p className="font-bold text-sm mb-4 text-sky-400">{d.titre}</p>
-              <div className="space-y-2">
-                {d.items.map((it) => {
-                  const existe = PROJETS.some((p) => p.id === it.id);
-                  const contenu = (
-                    <>
-                      <span className="text-white text-sm font-semibold">{it.nom}</span>
-                      <span className="block text-slate-400 text-xs leading-relaxed mt-0.5">{it.usage}</span>
-                    </>
-                  );
-                  return existe ? (
-                    <button
-                      key={it.nom}
-                      onClick={() => onNavigate("projet", it.id)}
-                      className="block w-full text-left bg-slate-900/70 border border-slate-800 hover:border-sky-500/50 rounded-xl px-3 py-2.5 transition-colors"
-                    >
-                      {contenu}
-                    </button>
-                  ) : (
-                    <div key={it.nom} className="bg-slate-900/70 border border-slate-800 rounded-xl px-3 py-2.5">{contenu}</div>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
     </Section>
   );
 }
