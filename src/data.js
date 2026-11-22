@@ -361,6 +361,7 @@ export const PROJETS = [
     images: [],
     documents: [
       { nom: "Fiche descriptive RP2 - GLPI", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI (7).pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
+      { nom: "Procédure OCS Inventory, GLPI et liaison Active Directory", fichier: "/assets/Procedure-OCS-GLPI-AD.pdf", description: "Procédure d'installation d'OCS Inventory 2.12.3 et de GLPI 11.0.7, avec liaison LDAP à Active Directory" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI.docx",
     fichePdf: "/assets/Fiche-descriptive-de-realisation-professionnelle-GLPI (7).pdf",
@@ -395,6 +396,7 @@ export const PROJETS = [
     images: [],
     documents: [
       { nom: "Fiche descriptive RP2 - Nagios", fichier: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS (6).pdf", description: "Fiche officielle BTS SIO E6 - Administration des systèmes et réseaux" },
+      { nom: "Procédure d'installation et de configuration de Nagios4", fichier: "/assets/Procedure-Nagios.pdf", description: "Supervision de la baie de brassage : Nagios4, SNMP, sécurisation, notifications par mail, Grafana" },
     ],
     ficheWord: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS.docx",
     fichePdf: "/assets/Fiche-descriptive-de-realisation-professionnelle-NAGIOS (6).pdf",
@@ -546,35 +548,6 @@ export const PROJETS = [
     ],
     couleur: "from-violet-600 to-purple-500",
     icon: "WEB",
-  },
-  {
-    id: "vlan-ccna",
-    titre: "Mise en place et configuration de réseaux VLAN (CCNA-2-1)",
-    courte: "Segmentation logique d'un LAN en domaines de diffusion avec VLANs sur Cisco Packet Tracer",
-    description: "TP Cisco Networking Academy : découverte du fonctionnement des VLANs. Observation du trafic de diffusion avec et sans VLAN sur une infrastructure composée de 3 commutateurs (S1, S2, S3) et 9 PC répartis en VLAN10, VLAN20 et VLAN30.",
-    contexte: "Projet scolaire CCNA-2-1 réalisé à H3 Campus dans le cadre du BTS SIO SISR.",
-    objectif: "Comprendre la segmentation réseau par VLANs et observer l'isolation du trafic de diffusion entre domaines.",
-    resultat: "Infrastructure VLAN opérationnelle : isolation du trafic de diffusion validée, ping inter-VLAN bloqués, ping intra-VLAN fonctionnels.",
-    technologies: ["Cisco Packet Tracer", "VLANs", "802.1Q", "Switches Cisco", "TCP/IP"],
-    categorie: "Réseau",
-    type: "scolaire",
-    periode: "Novembre 2025 - Décembre 2025",
-    lieu: "H3 Campus",
-    missions: [
-      "Configuration des VLANs 10, 20 et 30 sur 3 commutateurs Cisco",
-      "Affectation des ports aux VLANs correspondants",
-      "Observation du trafic ARP et ping en mode simulation",
-      "Vérification de l'isolation des domaines de diffusion",
-      "Test de connectivité intra-VLAN (PC1 → PC4, même VLAN10)",
-      "Test d'isolation inter-VLAN (PC1 → PC6, VLAN10 → VLAN30)",
-      "Suppression des VLANs et observation du comportement sans segmentation",
-    ],
-    images: [],
-    documents: [
-      { nom: "TP Découverte VLAN - CCNA", fichier: "/assets/tp_decouverte_vlan_MEHDI_AHMIDDOUCH.pdf", description: "TP complet Cisco Networking Academy - Découverte du fonctionnement des VLANs" },
-    ],
-    couleur: "from-emerald-600 to-teal-500",
-    icon: "NET",
   },
 ];
 

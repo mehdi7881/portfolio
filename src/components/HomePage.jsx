@@ -411,7 +411,6 @@ export function Competences({ onNavigate }) {
       preuves: [
         { href: "#veille", titre: "Veille technologique", fait: "Flux d'actualités cybersécurité et articles sélectionnés, sur la page Veille.", outils: ["Flux RSS"] },
         { id: "cybersecurite-linux", fait: "Étude du 2FA, accès SSH par clés RSA et rapport de sécurité sur une VM Kali Linux." },
-        { id: "vlan-ccna", fait: "Travaux pratiques CCNA : VLANs sur 3 commutateurs Cisco, tests d'isolation." },
         { href: "#ecoles", titre: "Poursuite d'études", fait: "Projet de Licence Pro MRIT parcours ASUR (cybersécurité) à l'IUT de Vélizy-Rambouillet." },
       ],
     },
@@ -459,7 +458,6 @@ const PROJETS_PERSO = [
   "inventaire-materiel-2027",
   "glpi-ocs-m2l",
   "nagios-m2l",
-  "vlan-ccna",
   "site-web",
 ];
 
