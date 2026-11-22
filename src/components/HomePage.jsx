@@ -619,7 +619,55 @@ export function Veille({ onNavigate }) {
   };
 
   return (
-    <Section id="veille" title="Veille technologique" subtitle="Flux RSS en direct — derniers articles cybersécurité">
+    <Section id="veille" title="Veille technologique" subtitle="Articles sélectionnés et flux RSS en direct — cybersécurité">
+
+      {/* Articles sélectionnés (issus de mes alertes Google) */}
+      <div className="mb-14">
+        <p className="text-slate-500 text-xs uppercase tracking-wider mb-4">Articles sélectionnés — issus de mes alertes Google</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {VEILLE.map((v) => (
+            <div key={v.titre} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/40 transition-all group flex flex-col">
+              {v.image && (
+                <div className="h-32 overflow-hidden relative flex-shrink-0">
+                  <img src={v.image} alt={v.titre} className="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
+                  <div className="absolute bottom-2 left-3">
+                    <span className="text-xs bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full">{v.source}</span>
+                  </div>
+                </div>
+              )}
+              <div className="p-5 flex flex-col flex-1">
+                {!v.image && (
+                  <span className="self-start text-xs bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full mb-2">{v.source}</span>
+                )}
+                <p className="text-slate-500 text-xs font-mono mb-2">{v.date}</p>
+                <h3 className="text-white font-bold text-sm mb-3 group-hover:text-sky-400 transition-colors leading-snug">{v.titre}</h3>
+                <p className="text-slate-500 text-xs leading-relaxed mb-3">{v.resume}</p>
+                {v.analysePerso && (
+                  <div className="bg-slate-800/60 border border-sky-500/20 rounded-xl p-3 mb-4">
+                    <p className="text-sky-400 text-xs font-bold mb-1 flex items-center gap-1">
+                      <span>💬</span> Mon analyse
+                    </p>
+                    <p className="text-slate-300 text-xs leading-relaxed italic">{v.analysePerso}</p>
+                  </div>
+                )}
+                <div className="flex gap-2 mt-auto">
+                  {v.lien && (
+                    <a href={v.lien} target="_blank" rel="noreferrer" className="flex-1 text-center bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                      Lire l'article →
+                    </a>
+                  )}
+                  {v.projetId && (
+                    <button onClick={() => onNavigate("projet", v.projetId)} className="flex-1 text-center border border-slate-700 hover:border-sky-500/50 text-slate-400 hover:text-sky-400 text-xs font-semibold px-3 py-2 rounded-lg transition-colors">
+                      Voir projet
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Sources avec liens */}
       <div className="mb-8">
@@ -677,47 +725,7 @@ export function Veille({ onNavigate }) {
           ))}
         </div>
       ) : (
-        /* Fallback articles statiques si RSS non dispo */
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {VEILLE.map((v) => (
-            <div key={v.titre} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-sky-500/40 transition-all group flex flex-col">
-              {v.image && (
-                <div className="h-32 overflow-hidden relative flex-shrink-0">
-                  <img src={v.image} alt={v.titre} className="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent" />
-                  <div className="absolute bottom-2 left-3">
-                    <span className="text-xs bg-sky-500/20 text-sky-400 border border-sky-500/30 px-2 py-0.5 rounded-full">{v.source}</span>
-                  </div>
-                </div>
-              )}
-              <div className="p-5 flex flex-col flex-1">
-                <p className="text-slate-500 text-xs font-mono mb-2">{v.date}</p>
-                <h3 className="text-white font-bold text-sm mb-3 group-hover:text-sky-400 transition-colors leading-snug">{v.titre}</h3>
-                <p className="text-slate-500 text-xs leading-relaxed mb-3">{v.resume}</p>
-                {v.analysePerso && (
-                  <div className="bg-slate-800/60 border border-sky-500/20 rounded-xl p-3 mb-4">
-                    <p className="text-sky-400 text-xs font-bold mb-1 flex items-center gap-1">
-                      <span>💬</span> Mon analyse
-                    </p>
-                    <p className="text-slate-300 text-xs leading-relaxed italic">{v.analysePerso}</p>
-                  </div>
-                )}
-                <div className="flex gap-2 mt-auto">
-                  {v.lien && (
-                    <a href={v.lien} target="_blank" rel="noreferrer" className="flex-1 text-center bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
-                      Lire l'article →
-                    </a>
-                  )}
-                  {v.projetId && (
-                    <button onClick={() => onNavigate("projet", v.projetId)} className="flex-1 text-center border border-slate-700 hover:border-sky-500/50 text-slate-400 hover:text-sky-400 text-xs font-semibold px-3 py-2 rounded-lg transition-colors">
-                      Voir projet
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <p className="text-slate-500 text-sm">Les flux RSS en direct sont momentanément indisponibles.</p>
       )}
 
       {/* ── MÉTHODE DE VEILLE ── */}
