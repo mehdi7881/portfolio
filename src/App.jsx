@@ -32,7 +32,7 @@ export default function App() {
           <>
             <Hero onNavigate={handleNavigate} />
             <APropos onNavigate={handleNavigate} />
-            <Competences />
+            <Competences onNavigate={handleNavigate} />
             <Realisations onNavigate={handleNavigate} />
             <Veille onNavigate={handleNavigate} />
             <TableauSynthese />

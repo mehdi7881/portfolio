@@ -291,163 +291,253 @@ export function APropos({ onNavigate }) {
   );
 }
 
+
 // ─── COMPÉTENCES ─────────────────────────────────────────────────────────────
-export function Competences() {
+function LignePreuve({ preuve, onNavigate }) {
+  const projet = preuve.id ? PROJETS.find((p) => p.id === preuve.id) : null;
+  if (preuve.id && !projet) return null;
+  const titre = projet ? projet.titre : preuve.titre;
+  const cliquable = Boolean(projet || preuve.href);
+  const base = "group block w-full text-left bg-slate-900/60 border border-slate-800 rounded-xl p-3 ";
+  const contenu = (
+    <>
+      <div className="flex items-start justify-between gap-3">
+        <span className="text-white text-sm font-semibold leading-snug">{titre}</span>
+        {cliquable && (
+          <span className="text-sky-400 text-sm flex-shrink-0 transition-transform group-hover:translate-x-1">→</span>
+        )}
+      </div>
+      <p className="text-slate-400 text-xs leading-relaxed mt-1">{preuve.fait}</p>
+      {projet && (
+        <span className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+          {projet.type === "entreprise" ? "En entreprise" : "Scolaire"}
+        </span>
+      )}
+    </>
+  );
+  if (projet) {
+    return (
+      <button onClick={() => onNavigate("projet", projet.id)} className={base + "hover:border-sky-500/50 transition-colors"}>
+        {contenu}
+      </button>
+    );
+  }
+  if (preuve.href) {
+    return (
+      <a href={preuve.href} className={base + "hover:border-sky-500/50 transition-colors"}>
+        {contenu}
+      </a>
+    );
+  }
+  return <div className={base}>{contenu}</div>;
+}
+
+export function Competences({ onNavigate }) {
   const referentiel = [
     {
       num: "C1",
-      categorie: "Gérer le patrimoine informatique",
-      desc: "Inventorier, maintenir à jour, sécuriser et faire évoluer les ressources matérielles, logicielles, configurations et documentations.",
+      titre: "Gérer le patrimoine informatique",
+      resume: "Je recense, documente et suis le matériel et les logiciels d'un parc.",
       couleur: "border-sky-500/40 bg-sky-500/5",
       badge: "text-sky-400",
+      preuves: [
+        { id: "inventaire-materiel-2027", fait: "Inventaire complet d'un serveur Dell PowerEdge R520 : CPU, RAM, stockage RAID 5, réseau." },
+        { id: "inventaire-proxmox", fait: "Inventaire des routeurs, commutateurs, bornes Wi-Fi, serveurs et postes de la M2L." },
+        { id: "gestion-parc", fait: "GLPI et OCS Inventory, agent déployé par GPO sur les postes du domaine." },
+        { id: "glpi-ocs-m2l", fait: "Synchronisation OCS vers GLPI, création des utilisateurs et des droits d'accès." },
+      ],
     },
     {
       num: "C2",
-      categorie: "Répondre aux incidents et aux demandes d'assistance / d'évolution",
-      desc: "Qualifier, diagnostiquer, résoudre, escalader et capitaliser les solutions via des procédures et une base de connaissances.",
+      titre: "Répondre aux incidents et aux demandes d'assistance",
+      resume: "Je diagnostique, résous et documente les incidents.",
       couleur: "border-violet-500/40 bg-violet-500/5",
       badge: "text-violet-400",
+      preuves: [
+        { id: "support-technique", fait: "Diagnostic de problèmes de connectivité, borne Wi-Fi au CCAS, antivirus réinstallé, rapports d'intervention." },
+        { id: "nagios-m2l", fait: "Simulation de panne et vérification des alertes UP/DOWN et des notifications par mail." },
+        { id: "zabbix-supervision", fait: "Alertes configurées (CPU > 90 %, espace disque) pour détecter les incidents." },
+      ],
     },
     {
       num: "C3",
-      categorie: "Développer la présence en ligne de l'organisation",
-      desc: "Contribuer à des contenus utiles comme des pages, documents ou supports, en respectant la clarté, l'accessibilité et la cohérence.",
+      titre: "Développer la présence en ligne de l'organisation",
+      resume: "Je conçois des contenus web et des supports clairs.",
       couleur: "border-purple-500/40 bg-purple-500/5",
       badge: "text-purple-400",
+      preuves: [
+        { id: "site-web", fait: "Site vitrine HTML/CSS/JS, charte graphique et logo pour l'entreprise fictive NEBULAX (AP1)." },
+        { titre: "Ce portfolio", fait: "Site en ligne pour présenter mes réalisations, développé avec React et Tailwind CSS et publié sur Vercel." },
+      ],
     },
     {
       num: "C4",
-      categorie: "Travailler en mode projet",
-      desc: "Structurer, planifier, suivre, communiquer et livrer une réalisation en prenant en compte objectifs, jalons, risques et compte-rendus.",
+      titre: "Travailler en mode projet",
+      resume: "Je cadre un projet, compare des solutions, justifie mes choix et livre un dossier.",
       couleur: "border-sky-500/40 bg-sky-500/5",
       badge: "text-sky-400",
+      preuves: [
+        { id: "ap2-m2l", fait: "Étude comparée de 3 solutions VLAN et de 2 solutions Wi-Fi, choix justifié, maquette, dossier et présentation." },
+        { id: "site-web", fait: "Projet AP1 complet : entreprise fictive, business plan, fiches de poste, présentation PowerPoint." },
+      ],
     },
     {
       num: "C5",
-      categorie: "Mettre à disposition un service informatique aux utilisateurs",
-      desc: "Déployer, configurer, tester et documenter un service, tout en assurant la continuité et une utilisation fiable.",
+      titre: "Mettre à disposition un service informatique",
+      resume: "J'installe, configure, teste et documente des services pour les utilisateurs.",
       couleur: "border-violet-500/40 bg-violet-500/5",
       badge: "text-violet-400",
+      preuves: [
+        { id: "zabbix-supervision", fait: "Supervision Zabbix 6.0 sur Debian 12 : serveur, agents, tableaux de bord." },
+        { id: "nagios-m2l", fait: "Nagios4 : hôtes, services, seuils, SNMP et notifications par Postfix." },
+        { id: "virtualisation", fait: "Serveur FTPS (FileZilla) sur Windows Server, avec TLS, comptes et droits d'accès." },
+        { id: "glpi-ocs-m2l", fait: "Serveur Ubuntu sur Proxmox avec pile LAMP, OCS Inventory et GLPI." },
+      ],
     },
     {
       num: "C6",
-      categorie: "Organiser son développement professionnel",
-      desc: "Mettre en place une veille, se former, suivre ses apprentissages et démontrer sa progression de compétences.",
+      titre: "Organiser son développement professionnel",
+      resume: "Je me forme en continu et je suis l'actualité de la cybersécurité.",
       couleur: "border-purple-500/40 bg-purple-500/5",
       badge: "text-purple-400",
+      preuves: [
+        { href: "#veille", titre: "Veille technologique", fait: "Flux d'actualités cybersécurité et articles sélectionnés, sur la page Veille." },
+        { id: "cybersecurite-linux", fait: "Étude du 2FA, accès SSH par clés RSA et rapport de sécurité sur une VM Kali Linux." },
+        { id: "vlan-ccna", fait: "Travaux pratiques CCNA : VLANs sur 3 commutateurs Cisco, tests d'isolation." },
+        { href: "#ecoles", titre: "Poursuite d'études", fait: "Projet de Licence Pro MRIT parcours ASUR (cybersécurité) à l'IUT de Vélizy-Rambouillet." },
+      ],
     },
   ];
 
-  const techniquesCompl = [
-    {
-      titre: "Systèmes d'exploitation",
-      couleur: "text-sky-400",
-      items: ["Windows 10", "Windows 11", "Windows Server", "Ubuntu", "Linux", "Kali Linux", "Debian 12", "VirtualBox (VM)"],
-    },
-    {
-      titre: "Réseaux et simulation",
-      couleur: "text-sky-400",
-      items: ["Cisco Packet Tracer", "Adressage IP", "DHCP", "DNS", "VLAN", "Switching", "Routage"],
-    },
-    {
-      titre: "Administration et support",
-      couleur: "text-sky-400",
-      items: ["Gestion de parc informatique"],
-    },
-    {
-      titre: "Outils et services",
-      couleur: "text-sky-400",
-      items: ["Zabbix", "Filezilla", "GLPI", "OCSInventory", "Pack office"],
-    },
-    {
-      titre: "Sécurité et bonnes pratiques",
-      couleur: "text-sky-400",
-      items: ["Application de procédures", "Documentation technique"],
-    },
-    {
-      titre: "Méthodes de travail",
-      couleur: "text-sky-400",
-      items: ["Travail en équipe", "Organisation", "Veille technologique", "Programmation des tâches"],
-    },
-  ];
-
-  const domainesExpertise = [
+  const domaines = [
     {
       titre: "Systèmes",
-      couleur: "text-sky-400 border-sky-500/30",
-      desc: "Utilisation et administration d'environnements Windows et Linux dans des contextes de support, de configuration et de maintenance.",
+      items: [
+        { nom: "Debian 12", usage: "Installation sur serveur HP ProLiant, MariaDB et Apache2.", id: "zabbix-supervision" },
+        { nom: "Ubuntu", usage: "Serveur sur Proxmox pour GLPI, OCS Inventory et Nagios.", id: "glpi-ocs-m2l" },
+        { nom: "Windows Server", usage: "Active Directory, GPO et serveur FTPS.", id: "gestion-parc" },
+        { nom: "Proxmox et VirtualBox", usage: "Machines virtuelles et infrastructure de virtualisation.", id: "inventaire-proxmox" },
+      ],
     },
     {
       titre: "Réseaux",
-      couleur: "text-violet-400 border-violet-500/30",
-      desc: "Mise en pratique des bases réseau avec simulation, adressage, services réseau et compréhension du fonctionnement des infrastructures.",
+      items: [
+        { nom: "Cisco Packet Tracer", usage: "VLANs 10, 20 et 30 sur 3 commutateurs, tests d'isolation.", id: "vlan-ccna" },
+        { nom: "VLAN 802.1Q", usage: "Comparaison des VLANs par port, protocole et adresse MAC.", id: "ap2-m2l" },
+        { nom: "Wi-Fi", usage: "Installation et configuration d'une borne TP-Link au CCAS.", id: "support-technique" },
+        { nom: "Matériel Cisco", usage: "Inventaire des routeurs, commutateurs et bornes de la M2L.", id: "inventaire-proxmox" },
+        { nom: "Audit réseau", usage: "Schéma de topologie et documentation des VLANs de la mairie.", id: "infrastructure-reseau" },
+      ],
     },
     {
-      titre: "Professionnalisation",
-      couleur: "text-purple-400 border-purple-500/30",
-      desc: "Développement progressif de méthodes de travail fiables : documentation, organisation, support, reporting et veille.",
+      titre: "Sécurité",
+      items: [
+        { nom: "SSH par clés RSA", usage: "Accès sécurisé en environnement isolé.", id: "cybersecurite-linux" },
+        { nom: "Kali Linux", usage: "VM de tests de sécurité et étude du 2FA.", id: "cybersecurite-linux" },
+        { nom: "FTPS / TLS", usage: "Serveur de transfert de fichiers chiffré.", id: "virtualisation" },
+        { nom: "WPA2-PSK", usage: "Analyse des niveaux de sécurité Wi-Fi de la mairie.", id: "infrastructure-reseau" },
+        { nom: "Antivirus", usage: "Réinstallation de Trend Micro sur tous les postes.", id: "support-technique" },
+      ],
+    },
+    {
+      titre: "Supervision",
+      items: [
+        { nom: "Zabbix 6.0", usage: "Serveur et agents, hôtes Windows, tableaux de bord, alertes.", id: "zabbix-supervision" },
+        { nom: "Nagios4", usage: "Hôtes, services, seuils critiques et SNMP.", id: "nagios-m2l" },
+        { nom: "Notifications par mail", usage: "Alertes Postfix testées avec une simulation de panne.", id: "nagios-m2l" },
+      ],
+    },
+    {
+      titre: "Gestion de parc",
+      items: [
+        { nom: "GLPI", usage: "Installation, plugin OCS, utilisateurs et droits.", id: "glpi-ocs-m2l" },
+        { nom: "OCS Inventory", usage: "Serveur, agent et remontée des machines.", id: "gestion-parc" },
+        { nom: "GPO", usage: "Déploiement automatique de l'agent OCS sur le domaine.", id: "gestion-parc" },
+        { nom: "Inventaire matériel", usage: "Fiche d'inventaire d'un serveur Dell PowerEdge R520.", id: "inventaire-materiel-2027" },
+      ],
+    },
+    {
+      titre: "Outils et développement",
+      items: [
+        { nom: "HTML, CSS, JavaScript", usage: "Site vitrine de l'entreprise fictive NEBULAX.", id: "site-web" },
+        { nom: "Figma et Canva", usage: "Charte graphique et logo.", id: "site-web" },
+        { nom: "Pack Microsoft Office", usage: "Tableaux d'inventaire Excel et présentations PowerPoint.", id: "ap2-m2l" },
+      ],
     },
   ];
 
-  return (
-    <Section id="competences" title="Compétences" subtitle="Compétences du BTS SIO SISR et compétences techniques mobilisées dans mon parcours">
+  const nbProjets = new Set(
+    referentiel.flatMap((c) => c.preuves.filter((p) => p.id).map((p) => p.id))
+  ).size;
 
-      {/* Header bloc */}
+  return (
+    <Section id="competences" title="Compétences" subtitle="Ce que je sais faire, avec les réalisations qui le prouvent">
+
+      {/* Introduction */}
       <div className="bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700/60 rounded-3xl p-8 mb-12">
         <span className="text-xs font-bold px-3 py-1 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/25 mb-4 inline-block">BTS SIO SISR</span>
-        <h3 className="text-white font-black text-3xl mb-4">Mes compétences</h3>
+        <h3 className="text-white font-black text-3xl mb-4">Mes compétences, preuves à l'appui</h3>
         <p className="text-slate-400 leading-relaxed max-w-3xl">
-          Cette page présente les compétences développées pendant ma formation et mon alternance. Elle regroupe à la fois les compétences du référentiel BTS SIO et des compétences techniques concrètes mobilisées dans mes missions, mes stages et mes travaux pratiques.
+          Chaque compétence du référentiel est reliée aux réalisations qui la démontrent, qu'elles viennent de mes stages, de mon alternance ou de ma formation. Clique sur une réalisation pour ouvrir sa fiche détaillée.
         </p>
+        <div className="flex flex-wrap gap-3 mt-6">
+          <span className="text-xs text-slate-300 bg-slate-950 border border-slate-700 px-3 py-1.5 rounded-full">6 compétences du référentiel</span>
+          <span className="text-xs text-slate-300 bg-slate-950 border border-slate-700 px-3 py-1.5 rounded-full">{nbProjets} réalisations à l'appui</span>
+        </div>
       </div>
 
-      {/* Référentiel */}
+      {/* Référentiel relié aux réalisations */}
       <div className="mb-12">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-white font-black text-xl">Compétences du référentiel</h3>
-          <span className="text-slate-500 text-sm">6 compétences principales</span>
-        </div>
+        <h3 className="text-white font-black text-xl mb-6">Les compétences du référentiel et leurs preuves</h3>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {referentiel.map((c) => (
-            <div key={c.num} className={`border ${c.couleur} rounded-2xl p-6 transition-all hover:brightness-110`}>
-              <span className={`text-xs font-black px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 ${c.badge} mb-4 inline-block`}>{c.num}</span>
-              <h4 className="text-white font-black text-base mb-3 leading-snug">{c.categorie}</h4>
-              <p className="text-slate-400 text-sm leading-relaxed">{c.desc}</p>
+            <div key={c.num} className={`border ${c.couleur} rounded-2xl p-6 flex flex-col`}>
+              <span className={`text-xs font-black px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 ${c.badge} mb-4 inline-block self-start`}>{c.num}</span>
+              <h4 className="text-white font-black text-base mb-2 leading-snug">{c.titre}</h4>
+              <p className="text-slate-400 text-sm leading-relaxed mb-4">{c.resume}</p>
+              <div className="space-y-2 mt-auto">
+                {c.preuves.map((p, i) => (
+                  <LignePreuve key={i} preuve={p} onNavigate={onNavigate} />
+                ))}
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Compétences techniques complémentaires */}
-      <div className="mb-12">
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8">
-          <h3 className="text-white font-black text-xl mb-2">Compétences techniques complémentaires</h3>
-          <p className="text-slate-400 text-sm mb-8">En complément des compétences du référentiel, j'utilise également différents systèmes, outils, logiciels et méthodes de travail dans mon parcours scolaire et professionnel.</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {techniquesCompl.map((cat) => (
-              <div key={cat.titre} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5">
-                <p className={`font-bold text-sm mb-4 ${cat.couleur}`}>{cat.titre}</p>
-                <div className="flex flex-wrap gap-2">
-                  {cat.items.map((item) => (
-                    <span key={item} className="flex items-center gap-1.5 text-slate-300 text-xs bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-full">
-                      <span className="w-1.5 h-1.5 bg-sky-400 rounded-full flex-shrink-0" />{item}
-                    </span>
-                  ))}
-                </div>
+      {/* Compétences techniques par domaine */}
+      <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8">
+        <h3 className="text-white font-black text-xl mb-2">Compétences techniques par domaine</h3>
+        <p className="text-slate-400 text-sm mb-8">Pour chaque outil, ce que j'en ai fait concrètement. Clique pour ouvrir la réalisation correspondante.</p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {domaines.map((d) => (
+            <div key={d.titre} className="bg-slate-800/50 border border-slate-700/60 rounded-2xl p-5">
+              <p className="font-bold text-sm mb-4 text-sky-400">{d.titre}</p>
+              <div className="space-y-2">
+                {d.items.map((it) => {
+                  const existe = PROJETS.some((p) => p.id === it.id);
+                  const contenu = (
+                    <>
+                      <span className="text-white text-sm font-semibold">{it.nom}</span>
+                      <span className="block text-slate-400 text-xs leading-relaxed mt-0.5">{it.usage}</span>
+                    </>
+                  );
+                  return existe ? (
+                    <button
+                      key={it.nom}
+                      onClick={() => onNavigate("projet", it.id)}
+                      className="block w-full text-left bg-slate-900/70 border border-slate-800 hover:border-sky-500/50 rounded-xl px-3 py-2.5 transition-colors"
+                    >
+                      {contenu}
+                    </button>
+                  ) : (
+                    <div key={it.nom} className="bg-slate-900/70 border border-slate-800 rounded-xl px-3 py-2.5">{contenu}</div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </div>
-
-      {/* Domaines d'expertise */}
-      <div className="grid md:grid-cols-3 gap-4">
-        {domainesExpertise.map((d) => (
-          <div key={d.titre} className={`bg-slate-900 border ${d.couleur} rounded-2xl p-6`}>
-            <p className={`font-black text-base mb-3 ${d.couleur.split(" ")[0]}`}>{d.titre}</p>
-            <p className="text-slate-400 text-sm leading-relaxed">{d.desc}</p>
-          </div>
-        ))}
       </div>
 
     </Section>
