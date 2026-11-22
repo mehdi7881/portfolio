@@ -73,7 +73,7 @@
 
   entreprises: [
     {
-      nom: "Stage 2026-2027",
+      nom: "",
       logo: null,
       type: "Stage",
       periode: "10 jours - alterne 2 jours ecole / 3 jours entreprise",
